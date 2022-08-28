@@ -168,6 +168,5 @@ int main()
 	return Arr(1,5);
 	}
 	else
-	return 0;
 	};
 //End of Main

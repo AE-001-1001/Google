@@ -165,9 +165,6 @@ int main()
 	pointeraddr(1.80025);
 	login(0);
 	if (login(1)){
-	return Arr(1,5);
-	}
-	else
-	return 0;
-	};
+
+	}};
 //End of Main
