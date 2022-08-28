@@ -149,9 +149,9 @@ int Arr(int x,int y)
 	//Array
 	cout << x << endl;
     for (x=-3; x<10; x++){
-        printf("%d ", x);
+        cout << x*x << endl;
     }
-
+    for (y=-5; y<x*2
 };
 
 //Entry to Main

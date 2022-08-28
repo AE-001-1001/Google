@@ -146,12 +146,7 @@ return 0;
 
 int Arr(int x,int y)
 {
-	//Array
-	cout << x << endl;
-    for (x=-3; x<10; x++){
-        printf("%d ", x);
-    }
-
+array(Arr);
 };
 
 //Entry to Main
@@ -165,5 +160,5 @@ int main()
 	pointeraddr(1.80025);
 	login(1);
 	return Arr(1,5);
-};
+}
 //End of Main

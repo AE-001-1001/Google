@@ -149,7 +149,7 @@ int Arr(int x,int y)
 	//Array
 	cout << x << endl;
     for (x=-3; x<10; x++){
-        printf("%d ", x);
+        printf("%d ",)
     }
 
 };
