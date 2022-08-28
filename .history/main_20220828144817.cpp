@@ -158,7 +158,7 @@ int main()
 	strings();
 	math();
 	pointeraddr(1.80025);
-	login(1);
-	return 0;
+	login()
+	return math();
 }
 //End of Main
