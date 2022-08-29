@@ -1,26 +1,29 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdarg.h>
 
 
-
-int rangRange(int min, int max)
+void number(int x)
 {
-    return min + (int) (rand()/(double)(RAND_MAX + 1)*(max-min+1));
+    printf("Number of elements: %d\n", (int) (sizeof(int) * x));
 }
 
 
-int num(long double x, long y)
+int num_processor(int x, int size)
 {
-    for (int i = 0; i < y; i++)
-    {  
-        printf("\t%ld\n",rangRange(x,y));
+    for (int x = 0; x < size; x++)
+    {
+        printf("%d\t", size-x);
     }
-return x+1;
+    return 0;
 }
 
-int main() 
+
+int main()
 {
-    printf("Hello, world!\n");
-    printf("%i",num(1,18));
-    printf("\t\t%i",num(18,38));
+int Mynum;
+printf("Type a number: \n");
+scanf_s("%d", &Mynum);
+printf("Your number is: %d\n", Mynum);
+num_processor(1, Mynum);
 }
