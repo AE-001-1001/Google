@@ -19,10 +19,7 @@ int stream(int a){
     }
         cout << a << "\n" <<  i << "\n";
     }
-    if (a == EOF)
-        return EOF;
-    else
-    return 0;
+    return a;
 };
 
 float strf(float k){
