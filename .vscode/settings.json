@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "pthread.h": "c"
     },
     "cSpell.words": [
         "pointeraddr"
