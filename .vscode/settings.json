@@ -4,5 +4,8 @@
     },
     "cSpell.words": [
         "pointeraddr"
+    ],
+    "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
+        "clang-diagnostic-error"
     ]
 }

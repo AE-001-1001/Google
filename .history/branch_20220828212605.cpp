@@ -35,8 +35,8 @@ float strf(float k){
             k = k--;
         }
     cout << i << "\t" << k << "\n";
-}
     return 0;
+}
 };
 
 int main()
