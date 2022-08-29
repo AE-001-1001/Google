@@ -15,7 +15,7 @@ int num(long double x, long y)
     {  
         printf("\t%ld\n",rangRange(x,y));
     }
-return y+1;
+return x+1;
 }
 
 int main() 
