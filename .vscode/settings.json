@@ -1,10 +1,15 @@
 {
     "files.associations": {
         "ostream": "cpp",
-        "pthread.h": "c"
+        "pthread.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c"
     },
     "cSpell.words": [
+        "myfloat",
         "Mynum",
+        "myprecision",
         "pointeraddr"
     ],
     "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
