@@ -5,7 +5,8 @@
         "array": "c",
         "string_view": "c",
         "initializer_list": "c",
-        "random": "c"
+        "random": "c",
+        "limits": "c"
     },
     "cSpell.words": [
         "myfloat",
