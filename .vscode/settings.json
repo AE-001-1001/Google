@@ -4,7 +4,8 @@
         "pthread.h": "c",
         "array": "c",
         "string_view": "c",
-        "initializer_list": "c"
+        "initializer_list": "c",
+        "random": "c"
     },
     "cSpell.words": [
         "myfloat",
