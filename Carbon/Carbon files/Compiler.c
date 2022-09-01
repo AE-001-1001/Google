@@ -67,6 +67,6 @@ int run_combination(int min, int max,int size)
 
 int main(){
     run_random_selection();
-printf("%d",run_combination(1,MAX_LIST_SIZE,0));
+printf("%d",run_combination(1,MAX_LIST_SIZE,3));
     return 0;
 }
