@@ -60,18 +60,11 @@ int putcharacter(void)
 
 //Creating a login entry
 
-char login(void)
-{
-    register char login = 'a';
-    printf("%c", login);
-    return login;
-    }
 
 
 
 int main()
 {
-    login();
     putcharacter();
     validation();
     return (0);
