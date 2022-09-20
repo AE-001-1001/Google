@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="2022-09-01">
+    <meta charset="utf-8">
+    <title>Goldie Home</title>
+<head>
+<style>
+img {
+    border: 4px solid rgb(7, 3, 226);
+    border-radius: 3px;
+}
+body {
+    animation: normal backwards;
+    text-align: center;
+    border-radius: 0%;
+    background-color: rgba(16, 13, 175, 0.54);
+    background-position: 0%;
+    }
+h1 {
+    position: relative;
+    color:yellowgreen;
+    font-family: monospace;
+    font-size: 35px;
+    text-align: center;
+    transition: all;
+}
+h2 {
+    text-align: center;
+    align-content: center;
+    color:rebeccapurple;
+    font-family: courier;
+    font-size: 160%;
+}
+h3 {
+    color:blue;
+    font-size: 120%;
+    font-family: gill sans;
+}
+h5 {
+    background-color: steelblue;
+    color:red;
+}
+p {
+    color:slateblue;
+    font-family: serif;
+    font-size: 100%;
+}
+a {
+    text-align: center;
+}
+/* The animation code */
+@keyframes Number{
+  to {background: rgb(160, 130, 33);transform: translateX(100%);}
+  from {background: rgb(255, 0, 0);}
+  to {background: rgb(0, 17, 255); transform: translateZ(50%);}
+  from {background: rgb(195, 0, 255);}
+  to {background: rgb(13, 175, 40);}
+}
+@keyframes Test {
+    to {background: rgb(0, 17, 255); transform: translateX(50%);}
+    from {background: rgb(255,0,0);}
+    to {background: rgb(255,160,0); transform: translateZ(100%);}
+    from {background: rgb(0,255,0);}
+    to {background:rgba(16, 13, 175, 0.54);}
+}
+
+@keyframes IMG {
+    from {transform: matrix3d(2,4,5)}
+}
+/* The element to apply the animation to */
+img { 
+    animation-name: IMG;
+    animation-duration: 5s;
+    animation-fill-mode: inherit;
+    animation-iteration-count: infinite;
+}
+p {
+    animation-name: Number;
+    animation-iteration-count: infinite;
+}
+h2 {
+  border-radius: 3%;
+  width: 150px;
+  height: 65px;
+  animation-name: Number;
+  animation-duration: 6s;
+  animation-iteration-count: infinite; 
+  }
+h5 {
+  border-radius: 3%;
+  width: 150px;
+  height: 65px;
+  animation-name: Test;
+  animation-duration: 6s;
+  animation-iteration-count: calc(5);
+  animation: Test 5s calc(2) ;
+}
+
+</style>
+</head>
+    <app>  
+    <body>
+    <viewport>
+    <script src="life.js"></script> 
+    <script src="load.js"></script>
+    <script src="background.js"></script>
+    <script src="/Javascript/scrambler.js"></script>
+<h2>DALL-E Art</h2>
+<img src="../../pictures/1.png" alt="img" width="600" height="720"></img>
+<h5>Test</h5>
+<p> This is what the end of the world would look like</p>
+<img src="DALL·E 2022-09-01 16.29.05 - a painting of what the end of the world would look like.png" alt="img" width="955" height="720"></img>
+<h3><a href="https://github.com/dall/dall/blob/master/">Visit Link to Dall-E</a></h3>
+    </body>
+    </viewport>
+    </app>
+</html>

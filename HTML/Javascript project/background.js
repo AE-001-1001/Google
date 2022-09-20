@@ -1,5 +1,6 @@
 function IfUserLoaded()
 {
+    const doc = document;
         if (document.readyState != "complete")
         {
             setTimeout(IfUserLoaded, 100);
@@ -13,6 +14,7 @@ function IfUserLoaded()
             document.addEventListener("DOMContentLoaded", IfUserLoaded);
             console.log("DOMContentLoaded: " + document.readyState);
         }
+        return (doc);
 }
 
 IfUserLoaded();
