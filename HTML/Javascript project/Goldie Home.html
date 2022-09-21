@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="2022-09-01">
     <meta charset="utf-8">
     <title>Goldie Home</title>
@@ -51,11 +51,13 @@ a {
 }
 /* The animation code */
 @keyframes Number{
+  from {position: relative;}
   to {background: rgb(160, 130, 33);transform: translateX(100%);}
   from {background: rgb(255, 0, 0);}
   to {background: rgb(0, 17, 255); transform: translateZ(50%);}
   from {background: rgb(195, 0, 255);}
   to {background: rgb(13, 175, 40);}
+  from {position: fixed;}
 }
 @keyframes Test {
     to {background: rgb(0, 17, 255); transform: translateX(50%);}
@@ -69,7 +71,8 @@ a {
     from {transform: matrix3d(2,4,5)}
 }
 /* The element to apply the animation to */
-img { 
+img {
+    text-align: center;
     animation-name: IMG;
     animation-duration: 5s;
     animation-fill-mode: inherit;
@@ -77,6 +80,7 @@ img {
 }
 p {
     animation-name: Number;
+    animation-duration: 6s;
     animation-iteration-count: infinite;
 }
 h2 {
@@ -94,9 +98,7 @@ h5 {
   animation-name: Test;
   animation-duration: 6s;
   animation-iteration-count: calc(5);
-  animation: Test 5s calc(2) ;
 }
-
 </style>
 </head>
     <app>  
@@ -106,7 +108,8 @@ h5 {
     <script src="load.js"></script>
     <script src="background.js"></script>
     <script src="/Javascript/scrambler.js"></script>
-<h2>DALL-E Art</h2>
+    <script src="/Javascript/Accuracy1.js"></script>
+    <h2>DALL-E Art</h2>
 <img src="../../pictures/1.png" alt="img" width="600" height="720"></img>
 <h5>Test</h5>
 <p> This is what the end of the world would look like</p>
