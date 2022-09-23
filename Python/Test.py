@@ -5,14 +5,14 @@ import os
 
 class Website:
     count = 0
-    
+
     def __init__(self, url):
         self.url = url
         Website.count += 1
 
     def Displayerstatus(url):
         print("Status: ",Website.count)
-    
+
 # use Requests to make requests to given URL
 def create_connection(w,y,h):
     h = h+1
