@@ -5,4 +5,8 @@
 ### 1a. Create a more refined version.
 ### 1b. Create a easier way hiding private data
 ### 2a. Added Carbon based code (08/29/22 5:39PM)
-#### 2a-Counts Down from given number
+### 2a-Counts Down from given number
+
+# Did:
+### 2a. Created HTTP REQ with Python Classes(09/23/22 8:43AM)
+### 2b. Added Connection/RunConnection to project(09/23/22 8:43AM)
