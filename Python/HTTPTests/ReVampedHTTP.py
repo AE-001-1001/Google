@@ -13,11 +13,12 @@ class Website:
 
     def Displaystatus(url,a,b):
         for i in range(0,10):
-            a = (requests.get(url).headers.get('Content-Type'),requests.post(url).headers.keys())
+            a = (requests.get(url).headers)
+            a1 = requests.get(url).url
             b = requests.get(url).status_code
             c = requests.post(url).apparent_encoding
             print("Status: ",a, '\n')
-            print("Status Code: ",b,"\n",c,'\n')
+            print("Status Code: ",b,"\n",c,'\n',a1)
         return 
 # use Requests to make requests to given URL
 def create_connection(w,y,h):
@@ -25,7 +26,7 @@ def create_connection(w,y,h):
     t1 = requests.post(y,headers={'Content-Type': 'image/png', 'Accept' : '*'}).elapsed
     t2 = requests.post(w,headers={'Content-Type': 'text/javascript'}).headers
     time = t.strftime("%Y-%m-%d %H:%M:%S")
-    data = [("Creating SSL connection %s" % time), ("SSL connection established:\n %s" % t1), ("SSL connection established: %s" % t2)]
+    data = [("\nCreating SSL connection %s" % time), ("\nSSL connection established: %s" % t1), ("\nSSL connection established: %s" % t2)]
     status_data = requests.get(w)
     print('Ran HTTP REQUESTER!\n%s' % data.index,"\nPost Data: %s" % status_data)
     return h
@@ -59,4 +60,4 @@ def main(time,y,z,w,w1,w2,w3,h):
         Website.Displaystatus(z,y,w3)
         Website.Displaystatus(w,w2,z)
         Website.Displaystatus(w3,w1,w)
-    return print(Website.count)
+    return print(Website.count+1,Website.count-1,Website.count+2,Website.count-2)
