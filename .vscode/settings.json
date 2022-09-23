@@ -25,5 +25,17 @@
             "addWords": true,
             "scope": "workspace"
         }
-    }
+    },
+    "python.testing.pytestArgs": [
+        "Python"
+    ],
+    "python.testing.unittestEnabled": true,
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./Python",
+        "-p",
+        "test_*.py"
+    ]
 }

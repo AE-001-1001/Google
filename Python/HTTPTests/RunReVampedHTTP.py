@@ -1,5 +1,5 @@
 from ReVampedHTTP import main #Template for HTTP requests
-import os
+import pytest
 
 def g(i):
     for i in range(0,i):
@@ -9,4 +9,5 @@ def g(i):
     return print(0+i-3,' ',0+i)
 
 if __name__ == '__main__':
-    g(12)
+    g(2)
+    
