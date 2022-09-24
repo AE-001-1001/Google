@@ -1,2 +1,3 @@
-#Main Developer AE-001-1001
-#Dependa-Bot: Secondary Developer <3
+# Contributors
+
+## Main Dev:AE-001-1001
