@@ -1,4 +1,3 @@
-import random as ran
 import time as t
 import requests
 import os
