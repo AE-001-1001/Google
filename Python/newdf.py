@@ -1,19 +1,17 @@
-import re
-class Person(object):
-    def __init__(self, fname,lname):
-        self.name = fname
-        self.lname = lname
-    def create_person(fname,lname):
-        person = (fname +' '+ lname)
-        return person
-    def create_id(abc,id):
-        dict = [("Got Person : "+ abc),("Got ID : %s" % id)]
-        print('',dict[0],'\n',dict[1])
-        return dict
+import numpy as np 
 
-a = Person.create_person('John','Marston')
-b = Person.create_id(a,0)
-fname = a
-c = re.search("\s",a,1)
-d = re.sub("\s"," ",a)
-print(c,d)
+class Private(object):
+    def __init__(self, x,y):
+        self.x = x
+        self.y = y
+    def __str__(x,y):
+        x = input('What #')
+        y = input('What #')
+        return x,y
+    def GatherData(x,y):
+        print(" X data from %s" % x,"\n Y Data from %s" % y)
+        return x,y
+a = Private.__str__(3,3)
+b = Private.__str__(1,0)
+Private.GatherData(a[0],a[1])
+Private.GatherData(b[1],b[0])

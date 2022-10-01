@@ -1,5 +1,6 @@
 import time as t
 import requests
+import random
 class regenerate(object):
     def __init__(self, name, version):
         self.name = name
@@ -35,16 +36,29 @@ class regenerate(object):
         return 0
     
     def BrainExternalConsole(name,version):
+        #taunt returns the external console taunt if password/username is wrong
+        taunt = random.choice(['Haha','Lmao','Nothing to see here','I am watching your computers','Dont play I will destroy your computer'])
         """External Console interface"""
         h = t.strftime("%Y-%m-%d %H:%M:%S")
         if name == 'Andrew':
             print('','Getting Neural Network data: %s' % name)
+            a = [('Connected to brain: %s' % name),("Brain Console: "+name),("Version: "+version)]
         if name != 'Andrew':
-            print('','You arent getting anything from this')
+            print(taunt,'You arent getting anything from this')
             return False
-        a = [('Connected to brain: %s' % name),("Brain Console: "+name),("Version: "+version)]
         return print('',a[0],'\n',a[1],'\n',a[2],'\n',h,flush=True)
-    
+
+class Life(object):
+    """Life interface"""
+    def __init__(self,name,age):
+        """Initialize the life interface"""
+        self.name = name
+        self.age = age
+        return name,age
+    def __str__(name,age):
+        """Return a string representation of the life interface"""
+        return print('',name,' ',age)
+
 def verify(boolean,Name,key):
     """Verify that the given field is correct"""
     if boolean == False:
@@ -55,7 +69,8 @@ def verify(boolean,Name,key):
             return None
     # if Checks return True passes
     if boolean == True:
-        version = regenerate.setVersion(key)
+        VERIKEY = regenerate.setVersion(key)
+        print('','Checking version Key: %s' % VERIKEY )
     # If the name is None then return custom error message
     if Name == None:
         print('You must provide a name fuck head')
@@ -66,7 +81,7 @@ def verify(boolean,Name,key):
         print('Incorrect User: %s' % name)
         return None
     if key == '0.404':
-        regenerate.BrainExternalConsole(name[1],version='0.0.1c')
+        regenerate.BrainExternalConsole(name[1],version='0.0.1e')
     if key != '0.404':
         print('Incorrect Key: %s' % key)
         return None
@@ -85,7 +100,8 @@ def website_grabber(boolean,website):
 def main(Name,Key,website):
     if Name == 'Andrew':
         verify(True,Name,Key)
-        website_grabber(True,website)
+    if Key != '0.404':
+        website_grabber(False,website)
     if Name != 'Andrew':
         verify(False,Name,Key)
         website_grabber(False,website)
@@ -94,5 +110,7 @@ def main(Name,Key,website):
 username = input("What's your username: ")
 password = input("What's your password: ")
 website = input("What Website to grab: ")
+Life.__str__(username,password)
+
 if __name__ == '__main__':
     main(username, password, website)
