@@ -26,10 +26,10 @@ class RunBuild(object):
         self.posY = posY
         self.posZ = posZ
         return 0
-    def __run__(posX,posY,posZ):
+    def __run__(self):
         """Run Build Arr"""
-        print(posX,posY,posZ)
-        return posX,posY,posZ
+        print()
+        return 
 
 def test(x,y,z):
     """Test Build Arr"""

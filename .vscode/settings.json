@@ -6,7 +6,8 @@
         "string_view": "c",
         "initializer_list": "c",
         "random": "c",
-        "limits": "c"
+        "limits": "c",
+        "iostream": "cpp"
     },
     "cSpell.words": [
         "myfloat",

@@ -1,6 +1,7 @@
 import time as t
 import requests
 import random
+#Welcome to the python url grabber
 class regenerate(object):
     def __init__(self, name, version):
         self.name = name
@@ -36,15 +37,14 @@ class regenerate(object):
         return 0
     
     def BrainExternalConsole(name,version):
-        #taunt returns the external console taunt if password/username is wrong
-        taunt = random.choice(['Haha','Lmao','Nothing to see here','I am watching your computers','Dont play I will destroy your computer'])
-        """External Console interface"""
+        """taunt returns the external console taunt if password/username is wrong/External Brain Console"""
+        taunt = random.choice(['Haha','Lmao','Nothing to see here','I am watching your computers','Dont play I will destroy your computer','Your efforts are useless!'])
         h = t.strftime("%Y-%m-%d %H:%M:%S")
         if name == 'Andrew':
             print('','Getting Neural Network data: %s' % name)
             a = [('Connected to brain: %s' % name),("Brain Console: "+name),("Version: "+version)]
         if name != 'Andrew':
-            print(taunt,'You arent getting anything from this')
+            print(taunt,'\nYou arent getting anything from this')
             return False
         return print('',a[0],'\n',a[1],'\n',a[2],'\n',h,flush=True)
 
@@ -93,13 +93,15 @@ def website_grabber(boolean,website):
         print('','Not Correct User')
         return None
     if boolean == True:
-            data = requests.get(website)
-            return print(data)
+        data = requests.get(website)
+        return print(data)
     return boolean,website
 
 def main(Name,Key,website):
     if Name == 'Andrew':
-        verify(True,Name,Key)
+        if Key == '0.404':
+            verify(True,Name,Key)
+            website_grabber(True,website)
     if Key != '0.404':
         website_grabber(False,website)
     if Name != 'Andrew':

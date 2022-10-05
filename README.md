@@ -14,3 +14,4 @@
 ### 1c. Added Connection/RunConnection to project(09/23/22 8:43AM)
 ### 1d. Added PyTest (09/23/22 5:20PM)
 ### 1e. Made HTTP Testing split between two different files (09/23/22 5:21PM)
+### 1f. Added Login Feature for HTTP Requests (09/30/22 10:46PM ~NewCoder.py~ )

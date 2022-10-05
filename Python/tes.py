@@ -1,52 +1,36 @@
-import requests
-import threading
-import logging
+class Life(object):
 
+    def __init__(self,diff,parent,dest):
+        self.diff = diff
+        self.parent = parent
+        self.dest = dest
+    
+    def __str__(diff, parent, dest):
+        table = [diff,parent,dest]
+        return table
+    
+    def __create__(dest,r,a2):
+        r = 1+2+r
+        a2 = dest
+        return r,a2
+    
+    def __read__(x,y,z):
+        x = x
+        y = y
+        z = z
+        return print('%s' % x,'\n%s'% y,'\n%s'%z)
+    
+    def __setitem__(dictset,value):
+        dictset = []
+        dictset.append(value)
+        return print(dictset)
 
+a = Life.__str__("Sadness","is","present")
+a1 = Life.__str__("Sometimes","I Want","Everything to stop")
+a2 = Life.__str__("Maybe","I was sent here to","die because I deserved it.")
+t = [Life.__create__(a[0],1,a[0]),Life.__create__(a1[0],2,a[0]),Life.__create__(a2[0],3,a[0])]
+y = [Life.__create__(a[1],2,a[1]),Life.__create__(a1[1],3,a[1]),Life.__create__(a2[1],4,a[1])]
+j = [Life.__create__(a[2],3,a[2]),Life.__create__(a1[2],4,a[2]),Life.__create__(a2[2],5,a[2])]
 
-def get_connections(url):
-    r = requests.get(url)
-    r.headers.update({'Content-Type': 'application/json'})
-    for key in r.headers:
-        print(key + ': ' + r.headers[key])
-        if r.headers[key] == '200 OK':
-            print('200 OK')
-        for headers in r.cookies:
-            print(headers + ': ' + r.cookies[headers])
-    return url
-
-def debug_url(url):
-    r = requests.get(url)
-    for key in r.headers:
-        key = r.headers[key]
-        print(key, end='\n', flush=True)
-    return r
-
-
-def debug_mode(url):
-    r = requests.get(url)
-    for debug_mode in r.headers:
-        (debug_mode + ': ' + r.headers[debug_mode])
-    return url
-
-
-def logging_url(url):
-    l = logging.getLogger(url)
-    l.setLevel(logging.DEBUG)
-    l.formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    l.addHandler(logging.StreamHandler())
-    l.info(url)
-    return url
-
-while True:
-    logging.basicConfig(level=logging.DEBUG)
-    logging.DEBUG_URL = debug_url('https://github.com/')
-    current_thread = threading.current_thread()
-    get_connections('https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/chunks/polyfills-220b45bce3a97adf0cc4.js')
-    get_connections('https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/chunks/94a7ad86-033888364311d66830a4.js')
-    get_connections('https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/chunks/pages/us/en/about/crypto-f5fbdec74ae340fff695.js')
-    get_connections('https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/chunks/pages/_app-899177335c4fbfc759b0.js')
-    debug_url('https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/chunks/pages/us/en/about/crypto-f5fbdec74ae340fff695.js')
-    debug_url('https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/chunks/pages/_app-899177335c4fbfc759b0.js')
-    debug_mode('https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/chunks/6283-04574aeeb0ddeadb3fd5.js')
-    logging_url('https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/chunks/polyfills-220b45bce3a97adf0cc4.js')
+Life.__read__(t,y,j)
+Life.__setitem__(t[0],a[0]+a[1]+a[2])
