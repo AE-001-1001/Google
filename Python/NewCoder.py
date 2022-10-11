@@ -1,6 +1,7 @@
 import time as t
 import requests
 import random
+
 #Welcome to the python url grabber
 class regenerate(object):
     def __init__(self, name, version):
@@ -116,3 +117,4 @@ Life.__str__(username,password)
 
 if __name__ == '__main__':
     main(username, password, website)
+    

@@ -26,13 +26,16 @@ a = np.array([(Generate_Random.iter(1),Generate_Random.iter(2),Generate_Random.i
              (Generate_Random.iter(13),Generate_Random.iter(14),Generate_Random.iter(15),Generate_Random.iter(17),Generate_Random.iter(18),Generate_Random.iter(24),Generate_Random.iter(25),Generate_Random.iter(21)),
              (Generate_Random.iter(16),Generate_Random.iter(17),Generate_Random.iter(18),Generate_Random.iter(20),Generate_Random.iter(21),Generate_Random.iter(22),Generate_Random.iter(23),Generate_Random.iter(26))])
 
-b = p.DataFrame(a,columns={'S','A','D','B','O','I','<','/3'}).sort_index().head(8)
+b = p.DataFrame(a,columns={'S','A','D','B','O','I','<','/3'}).sort_index()
 
 c = b.describe()
 d = c.hist()
-def getData(x):
-    print(a.dtype,'\n',x)
+def getDataDtypes(x):
+    print(x.dtypes,'\n',x)  
     return x
 
-getData(c)
-getData(d)
+def GetDataCtypes(x):
+    print(x.ctypes,'\n',x)
+    return 0
+getDataDtypes(c)
+GetDataCtypes(d)
