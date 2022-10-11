@@ -24,7 +24,7 @@ class Life(object):
         dictset = []
         dictset.append(value)
         return print(dictset)
-
+#Whoever is reading I am truly sorry for you to see this ._.
 a = Life.__str__("Sadness","is","present")
 a1 = Life.__str__("Sometimes","I Want","Everything to stop")
 a2 = Life.__str__("Maybe","I was sent here to","die because I deserved it.")

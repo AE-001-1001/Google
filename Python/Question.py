@@ -28,7 +28,7 @@ class Request(object):
         
         #POST Requester Value
         post_val = requests.request("POST", url=url, headers=Headers, params=data)
-        
+
         #checks if the post was successfully processed
         if post_val.status_code != 200:
             raise ConnectionRefusedError("Request returned status code: %s" % post_val)
