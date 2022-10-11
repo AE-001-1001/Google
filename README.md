@@ -15,3 +15,4 @@
 ### 1d. Added PyTest (09/23/22 5:20PM)
 ### 1e. Made HTTP Testing split between two different files (09/23/22 5:21PM)
 ### 1f. Added Login Feature for HTTP Requests (09/30/22 10:46PM ~NewCoder.py~ )
+### 1g. Added Custom Error (10/11/22 2:44AM ~Question.py) change the custom error https://prnt.sc/2uS73IsrrJVp

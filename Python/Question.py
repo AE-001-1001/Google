@@ -32,7 +32,6 @@ class Request(object):
         #checks if the post was successfully processed
         if post_val.status_code != 200:
             raise ConnectionRefusedError("Request returned status code: %s" % post_val)
-            raise Error
         #python returns data as a dictionary
         return_val = [json_val,'\nGet Return: %s' % get_val,'\nPost Return: %s' % post_val]
         return print(return_val[0], return_val[1], return_val[2])
