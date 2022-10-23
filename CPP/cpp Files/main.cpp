@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <ctime>
 #include <array>
+
 using namespace std;
 //Classes for Encapsulation
 class Citizen {
@@ -92,7 +93,7 @@ bool login(bool x)
 			printf("%i\n",(har[t-1]+rand()%3));
 	}
 	}
-	return ISLOGGED==false;
+	return ISLOGGED == false ? 0 : 1;
 };	
 //End
 
@@ -126,7 +127,7 @@ float Floating(float xk)
 	if (xk > 5){
 		cout << xk - 5 << endl;
 	}
-	printf("%f\n",xk*xk);
+	printf("%f%s\n",xk*xk);
 	return 0;
 }
 
@@ -140,7 +141,7 @@ int counter(int x,int y)
 	for (y=-5; y<x*2; y++){
 		cout << y*x << endl;
 	}
-return 0;
+return x,y;
 };
 // End of Counter
 
@@ -148,11 +149,11 @@ int Arr(int x,int y)
 {
 	//Array
 	cout << x << endl;
-    for (x=-3; x<10; x++){
+    for (x=-3; x<20; x++){
         printf("%d ", x);
     }
-
-};
+	return x;
+	};
 
 //Entry to Main
 int main()
@@ -165,9 +166,7 @@ int main()
 	pointeraddr(1.80025);
 	login(1);
 	if (login(1)){
-	return Arr(1,5);
+		Arr(1,5);
 	}
-	else
-	return 0;
 	};
 //End of Main

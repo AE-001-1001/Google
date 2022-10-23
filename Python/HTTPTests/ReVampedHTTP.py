@@ -48,7 +48,7 @@ def RunConnection(t,w,w1,w2,website,website2,website3,h):
         print("Connection @ ", web4, d+i-3/ran.random()*3.14)
         print("Connection @ ", web5, d+i-4/ran.random()*5.13)
         print("Connection @ ", web6, a+i+5/ran.random()*1.53)
-    return h+1
+    return w,w1,w2,website,website2,website3
 #Main function that handles running the create_connection, as well as setting another website to be requested and how many loops the user wants.
 def main(time,y,z,w,w1,w2,w3,h):
     for NULL in range(0, time):

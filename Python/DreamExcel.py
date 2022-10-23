@@ -1,6 +1,6 @@
 import random
 import time
-
+import os
 dict = []
 class Matrix(object):
     def __init__(self, x,y,z,s,t,d,x1,y1,z1,s1,t1,d1):
@@ -23,16 +23,12 @@ class Matrix(object):
             dict.append(i)
             if i >= 5:
                 i -= 1
-            if i <= 5:
-                '\n'
             print('\t',dict[i])
 
         for j in range(1, y):
             dict.append(j)
             if j >= 8:
-                j -= 1 
-            if len(dict) >= 10:
-                '\n'
+                j -= 1
             print('\t\t',dict[j],)
 
         for k in range(2, z):
@@ -71,55 +67,44 @@ class Matrix(object):
             dict.append(p)
             if p >= 35:
                 p -= 100
-            if len(dict) >= 35:
-                '\n'
             print('\t\t\t\t\t\t\t',dict[p],'\t\t\t',dict[p+h])
         for a1 in range(8, y1):
             dict.append(a1+p)
             if a1 >= 40:
                 a1 -= 100
-            if (len(dict)) >= 40:
-                '\n'
             print('\t\t\t\t\t\t',dict[a1],'\t\t',dict[a1+p])
         for b1 in range(9,z1):
             dict.append(b1+a1)
             if b1 >= 45:
                 b1 -= 100
-            if (len(dict)) >= 45:
-                '\n'
             print('\t\t\t\t\t',dict[b1],'\t',dict[b1+a1])
             return b1
         for h1 in range(10,s1):
             dict.append(h1+b1)
             if h1 >= 50:
                 h1 -= 100
-            if (len(dict)) >= 50:
-                '\n'
             print('\t\t\t\t\t',dict[h1],'\n',dict[h1+b1])
             
         for k1 in range(11,t1):
             dict.append(k1+h1)
             if k1 >= 55:
                 k1 -= 100
-            if (len(dict)) >= 55:
-                '\n'
             print('\t\t\t',dict[k1],'\n',dict[k1+b1])
         
         for zH in range(12,d1):
             dict.append(zH+k1)
             if zH >= 100:
                 zH -= 100
-            if (len(dict)) >= 55:
-                '\n'
             print('\t\t',dict[zH])
         
-        time.sleep(0.005)
+        time.sleep(0.002)
 
-        return 0
+        return i,j,k,n,l,h,b1,h1,k1,zH
+
     def shape2(x,y,z,s,t,d,x1,y1,z1,s1,t1,d1):
         for i in range(0, x):
             dict.append(i)
-            if i >= 5:
+            if i >= 6:
                 i -= 1
             if i <= 5:
                 '\n'
@@ -193,7 +178,7 @@ class Matrix(object):
                 h1 -= 100
             if (len(dict)) >= 50:
                 '\n'
-            print('\t\t\t\t\t',dict[h1],'\t\t',dict[h1+b1])
+            print('\t\t\t\t',dict[h1],'\t\t',dict[h1+b1])
             
         for k1 in range(11,t1):
             dict.append(k1+h1)
@@ -207,20 +192,32 @@ class Matrix(object):
             dict.append(zH+k1)
             if zH >= 100:
                 zH -= 100
-            if (len(dict)) >= 55:
+            if (len(dict)) >= 60:
                 '\n'
+            if zH <= 150:
+                zH += 10
             print('\t\t',dict[zH],'\t',dict[zH+k1])
         
         time.sleep(0.075)
 
         return 0
 
+class Cleaner(object):
+    """Clean the Console Frame"""
+    def __init__(self, cmd):
+        self.cmd = cmd
+    def callCommand(cmd):
+        a = os.system(cmd)
+        return a
+
 
 
 def main(x,y,z,s,t,d,x1,y1,z1,s1,t1,d1):
-    Matrix.shape(x,y,z,s,t,d,x1,y1,z1,s1,t1,d1)
-    Matrix.shape2(x-1,y*1,z**1,s+1,t+1,d+1,x1+1,y1+1,z1+1,s1**1,t1*1,d1-1)
-    return 0
+    a = Matrix.shape(x,y,z,s,t,d,x1,y1,z1,s1,t1,d1)
+    b = Matrix.shape2(x-1,y*1,z**1,s+1,t+1,d+1,x1+1,y1+1,z1+1,s1**1,t1*1,d1-1)
+    if main == True:
+        print('\n%s\n' % main)
+    return a + b
 
 a = random.randint(1,3)
 b = random.randint(2,12)
@@ -237,5 +234,7 @@ l = random.randint(12,50)+k
 dict = [a,b,c,d,e,f,g,h,i1,j,k,l]
 
 if __name__ == "__main__":
-    for i in range(0,555005500):
-        main(dict[0],dict[1],dict[2],dict[3],dict[4],dict[5],dict[6],dict[7],dict[8],dict[9],dict[10],dict[11])
+    for x in range(5,20040905745):
+        main(dict[0]+x,dict[1]+x,dict[2]+x,dict[3]+x,dict[4]+x,dict[5]+x,dict[6]+x,dict[7]+x,dict[8]+x,dict[9]+x,dict[10]+x,dict[11]+x)
+        Cleaner.callCommand('cls')
+        
