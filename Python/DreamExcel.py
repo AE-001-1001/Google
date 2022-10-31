@@ -202,7 +202,7 @@ class Matrix(object):
 
         return 0
 
-class Cleaner(object):
+class Console(object):
     """Clean the Console Frame"""
     def __init__(self, cmd):
         self.cmd = cmd
@@ -236,5 +236,5 @@ dict = [a,b,c,d,e,f,g,h,i1,j,k,l]
 if __name__ == "__main__":
     for x in range(5,20040905745):
         main(dict[0]+x,dict[1]+x,dict[2]+x,dict[3]+x,dict[4]+x,dict[5]+x,dict[6]+x,dict[7]+x,dict[8]+x,dict[9]+x,dict[10]+x,dict[11]+x)
-        Cleaner.callCommand('cls')
+        Console.callCommand('cls')
         
