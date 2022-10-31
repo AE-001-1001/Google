@@ -1,5 +1,6 @@
 import random
-from urllib import response
+
+
 class userinput(object):
     def __init__(self, intention, feeling):
         self.intention = intention

@@ -1,6 +1,6 @@
 import matplotlib.pylab as plt
 import random
-
+import tes
 
 class buildArr(object):
     """Builds a Array of objects"""
@@ -35,12 +35,13 @@ def test(x,y,z):
     """Test Build Arr"""
     a = buildArr.__init__(x,y,z)
     pass
-    plt.plot(RunBuild.__run__(a[0],a[1],a[2]))
-    plt.plot(RunBuild.__run__(a[2],a[0],a[1]))
+    plt.plot(RunBuild.__run__(a[0]))
+    plt.plot(RunBuild.__run__(a[2]))
     plt.show()
     return x,y,z
 a = random.randint(0,25)
 if __name__ == "__main__":     
-    test(a+1,a+2,a+3)
-    test(a+2,a+3,a+4)
-    test(a+3,a+4,a+5)
+    a = test(a+1,a+2,a+3).index
+    b = test(a+2,a+3,a+4).index
+    c = test(a+3,a+4,a+5).index
+    tes.Run_Main([[a,b,c]])

@@ -35,6 +35,8 @@ class causeofdeath(object):
         print("Cause of death: %s" % choice(CommonDeaths),"\nTime Citizen departed: %s "% {strftime("%Y-%m-%d %H:%M:%S")})
         return CommonDeaths
 
+
+
 a = Life('Andrew', 18)
 aa = Life.citizendatabase(a.name,a.age+randint(1,5))
 aaa = causeofdeath.cause(a.name)

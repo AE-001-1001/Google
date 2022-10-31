@@ -1,45 +1,29 @@
-import requests
-import http
-import os
-import pandas
-def Contact():
-    """Make contact with given website"""
-    website = input("What website do you want to touch: ")
-    headers = {
-            "Encoding": "UTF-8",
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Connection": "keep-alive"
-            }
-    data = {
-            "ILY2VIRUS": {
-                "Origin" : "/" #GOTCHA BITCHECK # also take me off this planet i am tired
-            }
-        }
-    
-    GET = requests.request('GET', website, headers=headers)
-    print('\n',GET.content)
+#import modules to write to csv file
+import numpy as np
+import pandas as pd
 
-    POST = requests.request('HEAD', website, params=data)
 
-    if POST.status_code == http.HTTPStatus.NOT_IMPLEMENTED or POST.status_code == http.HTTPStatus.BAD_REQUEST:
-        print(POST.content)
-    if POST.status_code == http.HTTPStatus.ACCEPTED or POST.status_code == http.HTTPStatus.OK:
-        print(POST.content)
+# create a function to write to csv file
+def write_to_csv(data, filename):
+    df = pd.DataFrame(data, index=None, columns=['a', 'b', 'c'])
+    df.to_csv(filename, index=True, header=False, sep=':',columns=df.columns,date_format='%Y-%m-%d %H:%M:%S',index_label='index',encoding='utf-8')
+    return
 
-    return GET,POST
+# create a function to read from csv file
+def read_from_csv(filename):
+    df = pd.read_csv(filename, header=None)
+    return df.values
 
-def system(cmd):
-    """System Console"""
-    command = os.system(cmd)
-    return command
 
-def Checker():
-    """Check for fields given"""
-    system("cls")
-    a = Contact()
-    print('GET: %s'%a[0],'\nPOST: %s '%a[1])
-    return print('Successfully Injected to Create URL: %s' % a[1].url)
+def Run_Main(data):
+    for (i, row) in enumerate(data):
+        new_data = data + np.random.randn(3,6).T
+        print(i , row)
+        for (j, col) in enumerate(new_data):
+            new_data = new_data * np.random.randn(3,6).T
+            print(j, col)
 
-if __name__ == '__main__':
-    Checker()
+    if data is not None:
+        write_to_csv(new_data, 'neo.csv')
+        print('\n',read_from_csv('neo.csv'))
+    return new_data
