@@ -3,7 +3,7 @@ namespace helloWorld
 {
     class tester
     {
-        public static float Maths(int a, int b)
+        private static float Maths(int a, int b)
         {
             // check if numbers are greater or equal than eachother
             if (a <= b)
