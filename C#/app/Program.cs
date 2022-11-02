@@ -30,7 +30,7 @@ namespace tester
             // Post the data to the API
             var response = client.PostAsync(url, content).Result;
             // print each line of the data nicely
-            foreach (var line in response.Content.ReadAsStringAsync().Result.Split(new[] { Environment.NewLine }, StringSplitOptions.TrimEntries))
+            foreach (var line in response.Content.ReadAsStringAsync().Result.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
             {
                 Console.WriteLine($"Line {0+line} {line}");
             }

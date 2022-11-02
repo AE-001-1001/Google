@@ -47,7 +47,7 @@ namespace helloWorld
             }
         }
         // create a function that reads the DnsEndPoint and prints out the ip address
-        public static void HTTP()
+        public async static void HTTP()
         {
             // ask for website to get ip address of
             Console.WriteLine("Enter a website to get the ip address of: ");
@@ -55,7 +55,6 @@ namespace helloWorld
             string? website = Console.ReadLine();
             // create a DnsEndPoint
             DnsEndPoint dns = new DnsEndPoint(website, 80);
-            
             // loop through DnsEndPoint
             foreach(var x in System.Net.Dns.GetHostEntryAsync(website).Result.AddressList)
             {
@@ -68,8 +67,8 @@ namespace helloWorld
         {
  
             Console.WriteLine("Hello World!");
- 
             Console.WriteLine(Maths(9, 10));
+            // make http ran by task.run
             HTTP();
             teste2r();
         }
