@@ -30,14 +30,30 @@ namespace tester
             // Post the data to the API
             var response = client.PostAsync(url, content).Result;
             // print each line of the data nicely
-            foreach (var line in response.Content.ReadAsStringAsync().Result.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+            foreach (var line in response.Content.ReadAsStringAsync().Result.Split(new[] { Environment.NewLine }, StringSplitOptions.TrimEntries))
             {
                 Console.WriteLine($"Line {0+line} {line}");
             }
             // Return the data
             return 0;
         }
-
+        // create a function that decompiles the Post/Get functions into C#
+        static public void decompile(string url, string data)
+        {
+            // Create a new HTTP client
+            var client = new HttpClient();
+            // Create a new HTTP content
+            var content = new StringContent(data);
+            // Post the data to the API
+            var response = client.PostAsync(url, content).Result;
+            // print each line of the data nicely
+            foreach (var line in response.Content.ReadAsStringAsync().Result.Split(new[] { Environment.NewLine }, StringSplitOptions.TrimEntries))
+            {
+                Console.WriteLine($"{line}");
+            }
+            // Return the data
+            return;
+        }
         static public void Main()
         {
         // Call the get function to get the data from given website and print it
@@ -46,7 +62,7 @@ namespace tester
 
         // Create malicious data for POST
         var data = "username=malicious&password=malicious";
-        Console.WriteLine(Post("https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/chunks/pages", data));
+        decompile("https://www.robinhood.com/login", data);
         helloWorld.tester.test();
         }
         }
