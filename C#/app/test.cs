@@ -70,7 +70,7 @@ namespace helloWorld
             return 0;
         }
         // create a function that reads the DnsEndPoint and prints out the ip address with custom user-agent
-        public static void HTTPdecompiler(string website)
+        public static void HTTPdecompiler(string website) // suckmydickscript
         {
             // get the website
             // create a new HTTP client
@@ -86,7 +86,7 @@ namespace helloWorld
             // set the request accept to the given accept
             request.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
             // set the request accept-encoding to the given accept-encoding
-            request.Headers.Add("Accept-Encoding", "gzip, deflate, br");
+            request.Headers.Add("Accept-Encoding", "gzip");
             // set the request accept-language to the given accept-language
             request.Headers.Add("Accept-Language", "en-US,en;q=0.9");
             // set the request cache-control to the given cache-control
@@ -111,8 +111,21 @@ namespace helloWorld
             // print out the response
             Console.WriteLine(response);
             // sleep for 1 seconds
-            Thread.Sleep(1000);
-            clear();
+            Thread.Sleep(1);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                // print out the response content
+                // make sure to decode it too
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+                // then decode the response content in a loop
+                File.WriteAllLinesAsync("output.txt", new string[] { response.Content.ReadAsStringAsync().Result });
+            }
+            // if console appears to be cluttered clear it
+            if (Console.CursorTop > 150)
+            {
+                // clear console
+                Console.Clear();
+            }
         }
 
         public static void test()
@@ -162,11 +175,52 @@ namespace helloWorld
                 websites.Add("https://www.asus.com/");
                 websites.Add("https://www.dell.com/");
                 websites.Add("https://www.tesla.com/");
+                websites.Add("https://github.com/AE-001-1001");
+                websites.Add("https://www.reddit.com/r/ProgrammerHumor/");
+                // add popular websites to the list
+                websites.Add("https://www.pandora.com/");
+                websites.Add("https://www.hulu.com/");
+                websites.Add("https://www.etsy.com/");
+                websites.Add("https://www.bing.com/");
+                websites.Add("https://www.yahoo.com/");
+                websites.Add("https://www.4chan.org/");
+                websites.Add("https://www.9gag.com/");
+                websites.Add("https://www.imgur.com/");
+                // add .gov websites to the list
+                websites.Add("https://www.whitehouse.gov/");
+                websites.Add("https://www.usa.gov/");
+                websites.Add("https://www.fbi.gov/");
+                websites.Add("https://www.cia.gov/");
+                websites.Add("https://www.nsa.gov/");
+                websites.Add("https://www.dhs.gov/");
+                websites.Add("https://www.doe.gov/");
+                websites.Add("https://www.dol.gov/");
+                websites.Add("https://www.dot.gov/");
+                websites.Add("https://www.ed.gov/");
+                websites.Add("https://www.epa.gov/");
+                websites.Add("https://www.fda.gov/");
+                websites.Add("https://www.fema.gov/");
+                websites.Add("https://www.hhs.gov/");
+                websites.Add("https://www.hud.gov/");
+                websites.Add("https://www.usda.gov/");
+                websites.Add("https://www.usgs.gov/");
+                websites.Add("https://www.va.gov/");
+                websites.Add("https://www.nist.gov/");
+                websites.Add("https://www.nrc.gov/");
+                websites.Add("https://www.nsf.gov/");
+                websites.Add("https://www.osha.gov/");
+                websites.Add("https://www.sba.gov/");
+                websites.Add("https://www.ssa.gov/");
+                websites.Add("https://www.usps.gov/");
+                // after all websites are added to the list
+                // return output to seperate file
+                // create a new file
+                // Put output into output.txt
+
                 //create a loop that goes through the list, and uses Post function
                 foreach (string website in websites)
                 {
                     // create a new task
-
                     HTTPdecompiler(website);
                 }
             }
