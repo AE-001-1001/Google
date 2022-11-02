@@ -46,21 +46,73 @@ namespace helloWorld
             }
             }
         }
-        // create a function that reads the DnsEndPoint and prints out the ip address
-        public async static void HTTP()
+        // create a function that clears console
+        public static void clear()
         {
-            // ask for website to get ip address of
-            Console.WriteLine("Enter a website to get the ip address of: ");
-            // read the website
-            string? website = Console.ReadLine();
-            // create a DnsEndPoint
-            DnsEndPoint dns = new DnsEndPoint(website, 80);
-            // loop through DnsEndPoint
-            foreach(var x in System.Net.Dns.GetHostEntryAsync(website).Result.AddressList)
+            // clear console
+            Console.Clear();
+        }
+        // create a post function for HTTP POST
+        static public int Post(string url, string data)
+        {
+            // Create a new HTTP client
+            var client = new HttpClient();
+            // Create a new HTTP content
+            var content = new StringContent(data);
+            // Post the data to the API
+            var response = client.PostAsync(url, content).Result;
+            // print each line of the data nicely
+            foreach (var line in response.Content.ReadAsStringAsync().Result.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
             {
-                // print out the ip address
-                Console.WriteLine($"IP of ({website}): " + x);
+                Console.WriteLine($"{line}");
             }
+            // Return the data
+            return 0;
+        }
+        // create a function that reads the DnsEndPoint and prints out the ip address with custom user-agent
+        public static void HTTPdecompiler(string website)
+        {
+            // get the website
+            // create a new HTTP client
+            var client = new HttpClient();
+            // create a new HTTP request
+            var request = new HttpRequestMessage();
+            // set the request method to GET
+            request.Method = HttpMethod.Get;
+            // set the request url to the given url
+            request.RequestUri = new Uri(website);
+            // set the request user-agent to the given user-agent
+            request.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36");
+            // set the request accept to the given accept
+            request.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
+            // set the request accept-encoding to the given accept-encoding
+            request.Headers.Add("Accept-Encoding", "gzip, deflate, br");
+            // set the request accept-language to the given accept-language
+            request.Headers.Add("Accept-Language", "en-US,en;q=0.9");
+            // set the request cache-control to the given cache-control
+            request.Headers.Add("Cache-Control", "max-age=0");
+            // set the request sec-ch-ua to the given sec-ch-ua
+            request.Headers.Add("Sec-Ch-Ua", "\"Chromium\";v=\"90\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"90\"");
+            // set the request sec-ch-ua-mobile to the given sec-ch-ua-mobile
+            request.Headers.Add("Sec-Ch-Ua-Mobile", "?0");
+            // set the request sec-fetch-dest to the given sec-fetch-dest
+            request.Headers.Add("Sec-Fetch-Dest", "document");
+            // set the request sec-fetch-mode to the given sec-fetch-mode
+            request.Headers.Add("Sec-Fetch-Mode", "navigate");
+            // set the request sec-fetch-site to the given sec-fetch-site
+            request.Headers.Add("Sec-Fetch-Site", "none");
+            // set the request sec-fetch-user to the given sec-fetch-user
+            request.Headers.Add("Sec-Fetch-User", "?1");
+            // set the request upgrade-insecure-requests to the given upgrade-insecure-requests
+            request.Headers.Add("Upgrade-Insecure-Requests", "1");
+            // return the content length
+            // get the response from the request
+            var response = client.SendAsync(request).Result;
+            // print out the response
+            Console.WriteLine(response);
+            // sleep for 1 seconds
+            Thread.Sleep(1000);
+            clear();
         }
 
         public static void test()
@@ -69,8 +121,55 @@ namespace helloWorld
             Console.WriteLine("Hello World!");
             Console.WriteLine(Maths(9, 10));
             // make http ran by task.run
-            HTTP();
-            teste2r();
+            // create loop
+            for (int x = 0; x < 10; x++)
+            {
+                // create a new task
+                Task.Run(() => teste2r());
+                // create a new task
+                // create a list will different websites to test
+                List<string> websites = new List<string>();
+                // add websites to the list
+                websites.Add("https://www.google.com/");
+                websites.Add("https://www.youtube.com/");
+                websites.Add("https://www.twitter.com/");
+                websites.Add("https://www.facebook.com/");
+                websites.Add("https://www.reddit.com/");
+                websites.Add("https://www.tumblr.com/");
+                websites.Add("https://www.instagram.com/");
+                websites.Add("https://www.pinterest.com/");
+                websites.Add("https://www.tiktok.com/");
+                websites.Add("https://www.twitch.tv/");
+                websites.Add("https://www.netflix.com/");
+                websites.Add("https://www.amazon.com/");
+                websites.Add("https://www.ebay.com/");
+                websites.Add("https://www.walmart.com/");
+                websites.Add("https://www.apple.com/");
+                websites.Add("https://www.microsoft.com/");
+                websites.Add("https://www.samsung.com/");
+                websites.Add("https://www.adobe.com/");
+                websites.Add("https://www.spotify.com/");
+                websites.Add("https://www.robinhood.com/");
+                websites.Add("https://www.minecraft.net/");
+                websites.Add("https://www.roblox.com/");
+                websites.Add("https://www.epicgames.com/");
+                websites.Add("https://www.ubisoft.com/");
+                websites.Add("https://www.playstation.com/");
+                websites.Add("https://www.xbox.com/");
+                websites.Add("https://www.nvidia.com/");
+                websites.Add("https://www.intel.com/");
+                websites.Add("https://www.amd.com/");
+                websites.Add("https://www.asus.com/");
+                websites.Add("https://www.dell.com/");
+                websites.Add("https://www.tesla.com/");
+                //create a loop that goes through the list, and uses Post function
+                foreach (string website in websites)
+                {
+                    // create a new task
+
+                    HTTPdecompiler(website);
+                }
+            }
         }
     }
 }
