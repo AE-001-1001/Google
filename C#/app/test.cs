@@ -1,5 +1,5 @@
 using System.Net;
-
+using System.Threading;
 
 namespace helloWorld
 {
@@ -69,6 +69,21 @@ namespace helloWorld
             // Return the data
             return 0;
         }
+        // create a function that renames the console to the website running along with the time with cool loading bar
+        public static void rename(string name)
+        {
+            // rename console
+            Console.Title = name + " " + DateTime.Now;
+            // create loading bar 
+            for (int i = 0; i < 100; i++)
+            {
+                // print out cool loading bar
+                Console.WriteLine("Loading: " + i + "%");
+                // sleep for 1 second
+                Thread.Sleep(1);
+            }
+
+        }
         // create a function that reads the DnsEndPoint and prints out the ip address with custom user-agent
         public static void HTTPdecompiler(string website) // suckmydickscript
         {
@@ -82,9 +97,9 @@ namespace helloWorld
             // set the request url to the given url
             request.RequestUri = new Uri(website);
             // set the request user-agent to the given user-agent
-            request.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36");
+            request.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36");
             // set the request accept to the given accept
-            request.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.3,image/avif,image/webp,image/apng,*/*;q=0.6,application/signed-exchange;v=b3;q=0.9");
+            request.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.6,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
             // set the request accept-encoding to the given accept-encoding
             request.Headers.Add("Accept-Encoding", "gzip,deflate,br");
             // set the request accept-language to the given accept-language
@@ -92,15 +107,15 @@ namespace helloWorld
             // set the request cache-control to the given cache-control
             request.Headers.Add("Cache-Control", "max-age=0");
             // set the request sec-ch-ua to the given sec-ch-ua
-            request.Headers.Add("Sec-Ch-Ua", "\"Chromium\";v=\"90\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"90\"");
+            request.Headers.Add("Sec-Ch-Ua", "\"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\", \";Not A Brand\";v=\"99\"");
             // set the request sec-ch-ua-mobile to the given sec-ch-ua-mobile
             request.Headers.Add("Sec-Ch-Ua-Mobile", "?0");
             // set the request sec-fetch-dest to the given sec-fetch-dest
             request.Headers.Add("Sec-Fetch-Dest", "document");
             // set the request sec-fetch-mode to the given sec-fetch-mode
-            request.Headers.Add("Sec-Fetch-Mode", "navigate");
+            request.Headers.Add("Sec-Fetch-Mode", "no-cors");
             // set the request sec-fetch-site to the given sec-fetch-site
-            request.Headers.Add("Sec-Fetch-Site", "none");
+            request.Headers.Add("Sec-Fetch-Site", "cross-site");
             // set the request sec-fetch-user to the given sec-fetch-user
             request.Headers.Add("Sec-Fetch-User", "?1");
             // set the request upgrade-insecure-requests to the given upgrade-insecure-requests
@@ -127,9 +142,23 @@ namespace helloWorld
                 Console.WriteLine(response.StatusCode);
             }
             var data = response.Content.ReadAsStringAsync().Result;
+            // if nosniff is in the response 
+            // try to decode the data
+            if (data.Contains("nosniff"))
+            {
+                // decode the data
+                Console.WriteLine(data);
+            }
+            // try to incur TCP_HIT
+            // if the response contains the word "cache"
+            if (data.Contains("cache"))
+            {
+                // print out the response
+                Console.WriteLine(data);
+            }
             File.WriteAllLinesAsync("output.csv", new string[] { data });
             // if console appears to be cluttered clear it
-            if (Console.CursorTop > 150)
+            if (Console.CursorTop > 500)
             {
                 // clear console
                 Console.Clear();
@@ -229,6 +258,7 @@ namespace helloWorld
                 foreach (string website in websites)
                 {
                     // create a new task
+                    rename(website);
                     HTTPdecompiler(website);
                 }
             }
