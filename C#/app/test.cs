@@ -86,7 +86,7 @@ namespace helloWorld
             // set the request accept to the given accept
             request.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
             // set the request accept-encoding to the given accept-encoding
-            request.Headers.Add("Accept-Encoding", "gzip");
+            request.Headers.Add("Accept-Encoding", "gzip,deflate,br");
             // set the request accept-language to the given accept-language
             request.Headers.Add("Accept-Language", "en-US,en;q=0.9");
             // set the request cache-control to the given cache-control
@@ -111,15 +111,21 @@ namespace helloWorld
             // print out the response
             Console.WriteLine(response);
             // sleep for 1 seconds
-            Thread.Sleep(1);
+            Thread.Sleep(1000);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 // print out the response content
                 // make sure to decode it too
                 Console.WriteLine(response.Content.ReadAsStringAsync().Result);
-                // then decode the response content in a loop
-                File.WriteAllLinesAsync("output.txt", new string[] { response.Content.ReadAsStringAsync().Result });
+                // Decode the incoming data
             }
+            else
+            {
+                // print out the response status code
+                Console.WriteLine(response.StatusCode);
+            }
+            var data = response.Content.ReadAsStringAsync().Result;
+            File.WriteAllLinesAsync("output.csv", new string[] { data });
             // if console appears to be cluttered clear it
             if (Console.CursorTop > 150)
             {

