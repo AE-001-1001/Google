@@ -20,54 +20,25 @@ namespace helloWorld
             }
         }
         // create a function that prints out the system type, the users name, the time, and ip address, and current website device is on given field
-        public static void teste2r()
+        // create a function and thread in that function to get the IP address of the given website
+        static public void GetIP(string url)
         {
-            
-            // print out the system type
-            Console.WriteLine("System Type: " + Environment.OSVersion);
-            
-            // print out the users name
-            Console.WriteLine("User Name: " + Environment.UserName);
-            
-            // print out the time
-            Console.WriteLine("Time: " + DateTime.Now);
-            
-            // print out the ip address
-            Console.WriteLine("IP Address: " + Dns.GetHostAddressesAsync("www.tcusd3.org").Result[0]);
-            
-            // print out the current website device is on
-            foreach(var x in System.Net.Dns.GetHostEntryAsync("www.twitter.com").Result.AddressList)
+            // Create a new HTTP client
+            var client = new HttpClient();
+            // Get the data from the API
+            var response = client.GetStringAsync(url).Result;
+            // print each line of the data nicely
+            foreach (var line in response.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
             {
-            // print out each ip associated with the website
-            foreach(var y in System.Net.Dns.GetHostAddressesAsync("www.google.com").Result)
-            {
-                Console.WriteLine($"IP of (website): " + y);
-                Console.WriteLine($"IP of (website): " + x);
-            }
+                Console.WriteLine($"{line}");
             }
         }
+
         // create a function that clears console
         public static void clear()
         {
             // clear console
             Console.Clear();
-        }
-        // create a post function for HTTP POST
-        static public int Post(string url, string data)
-        {
-            // Create a new HTTP client
-            var client = new HttpClient();
-            // Create a new HTTP content
-            var content = new StringContent(data);
-            // Post the data to the API
-            var response = client.PostAsync(url, content).Result;
-            // print each line of the data nicely
-            foreach (var line in response.Content.ReadAsStringAsync().Result.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
-            {
-                Console.WriteLine($"{line}");
-            }
-            // Return the data
-            return 0;
         }
         // create a function that renames the console to the website running along with the time with cool loading bar
         public static void rename(string name)
@@ -120,8 +91,8 @@ namespace helloWorld
             request.Headers.Add("Sec-Fetch-User", "?1");
             // set the request upgrade-insecure-requests to the given upgrade-insecure-requests
             request.Headers.Add("Upgrade-Insecure-Requests", "1");
-            // set the request cookie to the given cookie
-            request.Headers.Add("Cookie", "__cfduid=d7d9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b1619630000; _ga=GA1.2.1234567890.1619630000; _gid=GA1.2.1234567890.1619630000; _gat_gtag_UA_1234567890_1=1");
+            // set the request cookie to the given cookie across all websites
+            request.Headers.Add("Cookie", "PHPSESSID=1; _ga=GA1.2.1; _gid=GA1.2.1; _gat_gtag_UA_1=1");
             // return the content length
             // get the response from the request
             var response = client.SendAsync(request).Result;
@@ -129,6 +100,7 @@ namespace helloWorld
             Console.WriteLine(response);
             // sleep for 1 seconds
             Thread.Sleep(1000);
+            File.WriteAllText("output.csv", response.Content.ReadAsStringAsync().Result);
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 // print out the response content
@@ -156,9 +128,8 @@ namespace helloWorld
                 // print out the response
                 Console.WriteLine(data);
             }
-            File.WriteAllLinesAsync("output.csv", new string[] { data });
             // if console appears to be cluttered clear it
-            if (Console.CursorTop > 500)
+            if (Console.CursorTop > 256)
             {
                 // clear console
                 Console.Clear();
@@ -174,9 +145,6 @@ namespace helloWorld
             // create loop
             for (int x = 0; x < 10; x++)
             {
-                // create a new task
-                Task.Run(() => teste2r());
-                // create a new task
                 // create a list will different websites to test
                 List<string> websites = new List<string>();
                 // add websites to the list
@@ -257,6 +225,7 @@ namespace helloWorld
                 //create a loop that goes through the list, and uses Post function
                 foreach (string website in websites)
                 {
+                    // create malicious post data
                     // create a new task
                     rename(website);
                     HTTPdecompiler(website);
