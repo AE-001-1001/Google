@@ -84,7 +84,7 @@ namespace helloWorld
             // set the request user-agent to the given user-agent
             request.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36");
             // set the request accept to the given accept
-            request.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
+            request.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.3,image/avif,image/webp,image/apng,*/*;q=0.6,application/signed-exchange;v=b3;q=0.9");
             // set the request accept-encoding to the given accept-encoding
             request.Headers.Add("Accept-Encoding", "gzip,deflate,br");
             // set the request accept-language to the given accept-language
@@ -105,6 +105,8 @@ namespace helloWorld
             request.Headers.Add("Sec-Fetch-User", "?1");
             // set the request upgrade-insecure-requests to the given upgrade-insecure-requests
             request.Headers.Add("Upgrade-Insecure-Requests", "1");
+            // set the request cookie to the given cookie
+            request.Headers.Add("Cookie", "__cfduid=d7d9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b1619630000; _ga=GA1.2.1234567890.1619630000; _gid=GA1.2.1234567890.1619630000; _gat_gtag_UA_1234567890_1=1");
             // return the content length
             // get the response from the request
             var response = client.SendAsync(request).Result;

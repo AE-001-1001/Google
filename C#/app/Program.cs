@@ -3,6 +3,7 @@ namespace tester
 {
     internal class Program
     {
+        // written with the help of Github Autopilot <3
         // Path: Program.cs
         // Create a new function that will be called from the main function
         // It's purpose will be to use HTTP to get the data from the API
