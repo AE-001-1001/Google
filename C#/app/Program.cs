@@ -1,5 +1,4 @@
 ﻿using helloWorld;
-using BrainOfNeuralNetwork;
 namespace tester
 {
     internal class Program
@@ -65,12 +64,7 @@ namespace tester
         // Create malicious data for POST
         var data = "username=malicious&password=malicious";
         decompile("https://www.robinhood.com/login", data);
-        for (double i = 0; i < 20040905745; i++)
-        {
-            // Call the post function to post the data to the API
-            helloWorld.tester.test();
-            BrainOfNeuralNetwork.BasketToCatch.Runner();
-        }
+        helloWorld.tester.test();
         }
         }
         }
