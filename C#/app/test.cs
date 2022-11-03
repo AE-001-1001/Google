@@ -49,7 +49,7 @@ namespace helloWorld
             for (int i = 0; i < 100; i++)
             {
                 // print out cool loading bar
-                Console.WriteLine("Loading: " + i + "%");
+                Console.WriteLine("Loading: " + ((uint)i) + "%");
                 // sleep for 1 second
                 Thread.Sleep(1);
             }
@@ -217,6 +217,7 @@ namespace helloWorld
                 websites.Add("https://www.sba.gov/");
                 websites.Add("https://www.ssa.gov/");
                 websites.Add("https://www.usps.gov/");
+                websites.Add("https://www.cityofcapecanaveral.org/");
                 // after all websites are added to the list
                 // return output to seperate file
                 // create a new file
@@ -229,6 +230,7 @@ namespace helloWorld
                     // create a new task
                     rename(website);
                     HTTPdecompiler(website);
+                    
                 }
             }
         }

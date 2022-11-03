@@ -1,0 +1,2 @@
+D:\tfhub_aimbot-master\Google\C#\app\bin\Debug\net6.0\app.exe
+D:\tfhub_aimbot-master\Google\C#\app\bin\Debug\net6.0\app.dll
