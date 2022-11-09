@@ -1,0 +1,15 @@
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\bin\Debug\net6.0\NewConsoleApp.exe
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\bin\Debug\net6.0\NewConsoleApp.deps.json
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\bin\Debug\net6.0\NewConsoleApp.runtimeconfig.json
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\bin\Debug\net6.0\NewConsoleApp.dll
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\bin\Debug\net6.0\NewConsoleApp.pdb
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\obj\Debug\net6.0\NewConsoleApp.csproj.AssemblyReference.cache
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\obj\Debug\net6.0\NewConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\obj\Debug\net6.0\NewConsoleApp.AssemblyInfoInputs.cache
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\obj\Debug\net6.0\NewConsoleApp.AssemblyInfo.cs
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\obj\Debug\net6.0\NewConsoleApp.csproj.CoreCompileInputs.cache
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\obj\Debug\net6.0\NewConsoleApp.dll
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\obj\Debug\net6.0\refint\NewConsoleApp.dll
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\obj\Debug\net6.0\NewConsoleApp.pdb
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\obj\Debug\net6.0\NewConsoleApp.genruntimeconfig.cache
+D:\tfhub_aimbot-master\Google\C#\NewConsoleApp\obj\Debug\net6.0\ref\NewConsoleApp.dll
