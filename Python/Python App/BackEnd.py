@@ -3,7 +3,7 @@ from time import strftime
 from tkinter import *
 from tkinter import Menu, Menubutton
 from backEndButton import *
-from requester import *
+from AppReq import *
 
 class App:
     

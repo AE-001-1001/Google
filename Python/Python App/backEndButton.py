@@ -1,6 +1,9 @@
 import ctypes
 from tkinter import simpledialog,messagebox
 import os 
+from colorama import Fore, Back, Style
+
+
 class BackEndButtons:
         def PROCESSOR_IDENTIFIER():
             """Prints a message when the button is clicked"""
@@ -28,10 +31,14 @@ class BackEndButtons:
                 print("Attaching to PID: {}".format(id))
                 kernel32 = ctypes.windll.kernel32
                 handle = kernel32.OpenProcess(0x1F0FFF, False, int(id))
-                print("Handle: {}".format(handle))
-                if not handle:
-                    print("[!] Couldn't get handle to PID: {}".format(id))
-                    print("[!] Are you sure you have permission to attach?")
-                    return False
+                # allocate memory
+                arg_address = kernel32.VirtualAllocEx(handle, 0, 0x1000, 0x3000, 0x40)
+                # write process memory to google chrome
+                b = kernel32.CreateRemoteThread(handle, None, 0, arg_address, None, 0, None)
+                print("\n",b)
+                return b
+            
             if inject == False:
                 print("Not Attaching")
+            
+            return 1
