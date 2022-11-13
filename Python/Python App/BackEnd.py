@@ -10,7 +10,7 @@ class App:
     def new_window(name):
         """Create a new window"""
         root = Tk()
-        root.geometry('455x315')
+        root.geometry('455x345')
         os.system('title ' + name)
         for i in range(10):
             root.update()
@@ -19,13 +19,15 @@ class App:
         def update_total_memory():
             """Update the total physical memory"""
             # get the total free physical memory
-            total_memory = os.popen("wmic OS get FreePhysicalMemory /Value")
+            total_memory = os.popen("wmic OS get FreePhysicalMemory /Value").read()
             # print the total physical memory
             os.system('cls')
             print("Total Physical Memory: {}".format(total_memory))
             # update the total physical memory every 1000 milliseconds
             root.after(1000, update_total_memory)
             return 1
+        
+        # create a function that will count when New Window is activated
 
         def update_time_in_titletk():
             """Update the time in the title"""
@@ -48,6 +50,7 @@ class App:
             return 1
         
         #create a function that will send a syn_ack
+        
         def syn_ack():
             """Send a syn_ack packet"""
             # get the ip address
@@ -59,20 +62,21 @@ class App:
         def ScanOpenPorts():
             a = os.popen("netstat -ano").read()
             with open("PID.csv", "w") as f:
-                f.write(a)
+                f.writelines(a)
             return 
         
         btn1 = Button(root, text="PROCESSOR", command=BackEndButtons.PROCESSOR_IDENTIFIER)
-        btn2 = Button(root, text="IP Address", command=lambda: print((os.system("curl ipinfo.io/ip.html"))))
+        btn2 = Button(root, text="IP Address", command=lambda: (os.system("curl ipinfo.io/ip")))
         btn3 = Button(root, text="IP Location", command=BackEndButtons.ip_location)
-        btn4 = Button(root, text="Send SYN_ACK", command=syn_ack)
-        btn5 = Button(root, text="Request Website", command=CustomRequester.get)
-        btn6 = Button(root, text="All Running Processes", command=BackEndButtons.sort_tasklist)
-        btn7 = Button(root, text="Attach to PID", command=BackEndButtons.AttachToPID)
-        btn8 = Button(root, text="Clear Console", command=lambda: os.system('cls'))
-        btn9 = Button(root, text="Exit", command=root.destroy)
+        btn4 = Button(root, text="Internet Speed", command=BackEndButtons.internet_speed)
+        btn5 = Button(root, text="Send SYN_ACK", command=syn_ack)
+        btn6 = Button(root, text="Request Website", command=CustomRequester.get)
+        btn7 = Button(root, text="All Running Processes", command=BackEndButtons.sort_tasklist)
+        btn8 = Button(root, text="Attach to PID", command=BackEndButtons.AttachToPID)
+        btn9 = Button(root, text="Clear Console", command=lambda: os.system('cls'))
+        btn10 = Button(root, text="Exit", command=root.destroy)
         
-        buttons = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9]
+        buttons = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10]
         
         for i in range(len(buttons)):
             # align the buttons to the left to match the size of the window
@@ -87,12 +91,12 @@ class App:
         menu.add_checkbutton(label='Time', command=update_time_in_titletk)
         menu.add_checkbutton(label='Date', command=lambda: print(strftime("%d/%m/%Y/%H:%M:%S/%a")))
         menu.add_checkbutton(label="GPU Information", command=lambda: os.system("nvidia-smi "))
-        menu.add_checkbutton(label='CPU Usage', command=lambda: print(os.system("wmic cpu get loadpercentage /value")))
+        menu.add_checkbutton(label='CPU Usage', command=lambda: os.system("wmic cpu get loadpercentage /value"))
         menu.add_checkbutton(label='Memory Usage', command=update_total_memory)
         menu.add_checkbutton(label='Virtual Memory Usage', command=update_total_virtual_memory)
         menu.add_checkbutton(label='Open Ports', command=ScanOpenPorts)
-        menu.add_checkbutton(label='Deploy IP Addresses Reader', command=lambda: print(os.system("netstat | findstr /R /C:\"[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*\"")))
-
+        menu.add_checkbutton(label='Deploy IP Addresses Reader', command=lambda: os.system("netstat | findstr /R /C:\"[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*\""))
+        menu.add_checkbutton(label='Turtle Drawing', command=Turtle.rhombicosidodecahedron)
 
         menu.config(font=("Courier", 9), background="black", foreground="white", relief="raised", border=3)
         root.config(menu=menu, background="black", bd=5, relief="sunken", border=3)
