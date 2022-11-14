@@ -37,8 +37,8 @@ class Turtle:
 # create a drawing of rhombicosidodecahedron
     def rhombicosidodecahedron():
         t1 = Turtle(0, 0, "red")
-        t2 = Turtle(0, 0, "blue")
-        t3 = Turtle(0, 0, "green")
+        t2 = Turtle(0, 0, "green")
+        t3 = Turtle(0, 0, "blue")
         turtles = np.array([t1, t2, t3])
         # create a loop that will draw the rhombicosidodecahedron
         for Item in turtles:

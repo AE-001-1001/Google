@@ -3,6 +3,7 @@ import json
 from tkinter import simpledialog
 
 class CustomRequester:
+    """HTTPAPI Requester"""
     def __init__(self, url):
         self.url = url
         
@@ -11,8 +12,8 @@ class CustomRequester:
         """Website Getter"""
         # ask what website to get
         url = simpledialog.askstring("Website", "Enter Website")
-        r = ["Status:",requests.get(url)]
-        print(r[1].headers)
+        r = ["Status:",requests.get(url).headers]
+        print(r)
         with open("Return.txt", "w") as f:
             f.write(str(r))    
         # print the website
