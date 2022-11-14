@@ -28,7 +28,12 @@ class Turtle:
 
     def ReadPosition(turtle):
         """Read the position of the turtle"""
-        return print(turtle.t.position())
+        # get the position of the turtle and name of each turtle
+        position = turtle.t.pos()
+        name = turtle.t
+        # print the position of the turtle
+        print("Position of {}: {}".format(name, position))
+        return 1
 # create a drawing of rhombicosidodecahedron
     def rhombicosidodecahedron():
         t1 = Turtle(0, 0, "red")
@@ -37,6 +42,7 @@ class Turtle:
         turtles = np.array([t1, t2, t3])
         # create a loop that will draw the rhombicosidodecahedron
         for Item in turtles:
+            Turtle.ReadPosition(Item)
             if (Item == t1):
                 t1.left(90)
                 t1.forward(60)
@@ -47,8 +53,13 @@ class Turtle:
                 t2.forward(60)
                 t2.right(-90)
                 t2.forward(60)
-
-            Turtle.ReadPosition(Item)
+            if (Item == t3):
+                t3.forward(60)
+                t3.forward(60)
+                t3.left(90)
+                t3.forward(60)
+                t3.right(90)
+                t3.forward(60)
         t.done()
         return 1
 # run the turtle

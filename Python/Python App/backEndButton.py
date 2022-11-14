@@ -48,6 +48,8 @@ class BackEndButtons:
                 kernal32 = windll.kernel32
                 pid = int(id)
                 h_process = kernal32.OpenProcess(0x1F0FFF, False, pid)
+                for h in h_process:
+                    print(h)
                 print(h_process, pid)
                 if not h_process:
                     print("[*] Couldn't acquire a handle to PID: %s" % pid)

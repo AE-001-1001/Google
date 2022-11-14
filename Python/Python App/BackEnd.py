@@ -64,6 +64,8 @@ class App:
             with open("PID.csv", "w") as f:
                 f.writelines(a)
             return 
+        # if user is hovering over button create a highlight
+        
         
         btn1 = Button(root, text="PROCESSOR", command=BackEndButtons.PROCESSOR_IDENTIFIER)
         btn2 = Button(root, text="IP Address", command=lambda: (os.system("curl ipinfo.io/ip")))
@@ -75,8 +77,10 @@ class App:
         btn8 = Button(root, text="Attach to PID", command=BackEndButtons.AttachToPID)
         btn9 = Button(root, text="Clear Console", command=lambda: os.system('cls'))
         btn10 = Button(root, text="Exit", command=root.destroy)
+        btn11 = Button(root, text="Scan Open Ports", command=ScanOpenPorts, bg="black", fg="white")
         
-        buttons = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10]
+        btn11.place(x=0, y=0)
+        buttons = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10 ]
         
         for i in range(len(buttons)):
             # align the buttons to the left to match the size of the window
@@ -94,7 +98,6 @@ class App:
         menu.add_checkbutton(label='CPU Usage', command=lambda: os.system("wmic cpu get loadpercentage /value"))
         menu.add_checkbutton(label='Memory Usage', command=update_total_memory)
         menu.add_checkbutton(label='Virtual Memory Usage', command=update_total_virtual_memory)
-        menu.add_checkbutton(label='Open Ports', command=ScanOpenPorts)
         menu.add_checkbutton(label='Deploy IP Addresses Reader', command=lambda: os.system("netstat | findstr /R /C:\"[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*\""))
         menu.add_checkbutton(label='Turtle Drawing', command=Turtle.rhombicosidodecahedron)
 
