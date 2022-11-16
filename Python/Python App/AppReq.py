@@ -12,12 +12,13 @@ class CustomRequester:
         """Website Getter"""
         # ask what website to get
         url = simpledialog.askstring("Website", "Enter Website")
-        r = ["Status:",requests.get(url).headers]
+        r = [requests.get(url).headers]
         print(r)
         with open("Return.txt", "w") as f:
-            f.write(str(r))    
+            # write to file nicely
+            f.writelines(str(r))
         # print the website
-
+        return 0
     def post(self, data):
         r = requests.post(self.url, data=json.dumps(data))
         return r.json()
