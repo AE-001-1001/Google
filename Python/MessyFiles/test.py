@@ -77,7 +77,8 @@ def _premain_():
     a = PreRunner() 
     b = Persons(random.choice(["Andrew","Alexandre", "Levy", "Jarad" ]), random.choice(["Brian", "Alan", "Kurt" ,"Amy"]))
     return a, b
-if __name__ == "__main__":
+
+def run():
     start = t.time()
     for i in range(0,200409):
         # open test.csv and write the data
@@ -86,4 +87,7 @@ if __name__ == "__main__":
             f.writelines(f"{i} {t.strftime('%H:%M:%S')} {t.time() - start} {t.time()}")
         print("Time elapsed: {}".format(t.time() - start))
         os.system("cls")
+    return 
+if __name__ == "__main__":
+    run()
     
