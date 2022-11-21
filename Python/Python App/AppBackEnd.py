@@ -98,6 +98,7 @@ class App:
         buttons = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 ]
         another_buttons = [Scan, Get_IP, Request, OpenServer]
 
+
         for xyz in another_buttons:
             xyz.config(bg="black", fg="white")
         for ZYX in range(len(another_buttons)):

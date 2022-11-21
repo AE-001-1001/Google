@@ -82,16 +82,19 @@ class Turtle:
             standardDeviation = r.random() * m.sqrt(sum((x - average) ** 2 for x in const) / len(const))
             for i in range(0, 20000004, 1):
                 for i in const:
+                    
                     turtles[0].t.rt(average * 3.14)
-                    turtles[0].t.fd(average * 2 * standardDeviation)
+                    turtles[0].t.fd(average * 2 * standardDeviation + i)
                     turtles[0].t.lt(average * 2 * standardDeviation * 3.14)
                     turtles[0].t.fd(average * 2 * standardDeviation + 3.14)
+                    
                     turtles[2].t.rt(average * 2 * 3.14)
-                    turtles[2].t.fd(average * 2 * standardDeviation)
+                    turtles[2].t.fd(average * 2 * standardDeviation + i)
                     turtles[2].t.lt(average * 2 * standardDeviation * 3.14)
                     turtles[2].t.fd(average * 2 * standardDeviation + 3.14)
+
                     turtles[1].t.rt(average * 2 * 3.14)
-                    turtles[1].t.fd(average * 2 * standardDeviation)
+                    turtles[1].t.fd(average * 2 * standardDeviation + i)
                     turtles[1].t.lt(average * 2 * standardDeviation * 3.14)
                     turtles[1].t.fd(average * 2 * standardDeviation + 3.14)
         t.done()
