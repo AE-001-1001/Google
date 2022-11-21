@@ -23,7 +23,7 @@ class BackEndButtons:
             """Check the internet speed"""
             # curl ookla speedtest and get the download and upload speed
             a = os.popen("curl -s https://www.speedtest.net/#").read()
-            if a == "guid":
+            if a == " ":
                 print("Internet Speed: {}".format(a))
             print(a)
             return 1

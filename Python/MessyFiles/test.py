@@ -4,7 +4,7 @@ import os
 import time as t
 import os 
 from Sadness import *
-
+from StoryofLife import HumanInput
 # Thank you for reading my code
 # I hope you enjoyed it
 # and Thank you universe for watching over my fallen brothers and sisters
@@ -34,16 +34,15 @@ class RandomAge(object):
         return np.random.randint(0,27, size=9)
 
 # 27 club members list the first 10
-
 Humans = np.array([Human("Alexandre", "Levy", 27.068),Human("Jim", "Morrison", 27.207), Human("Jimi", "Hendrix", 27.295), 
                    Human("Janis", "Joplin", 27.258), Human("Kurt", "Cobain", 27.044), Human("Amy", "Winehouse", 27.312), 
                    Human("Brian", "Jones", 27.125), Human("Alan", "Wilson", 27.061), Human("Andrew","Jones", 27.115),
                    Human("Jarad", "Higgins", 21.006),Human("Dimitar", "Voev", 27.107), Human("Joe", "Henderson", 27.183)])
+
 #satalites = np.array([Human("Voyager", "1" , 42.000), Human("Voyager", "2", 42.000), Human("Pioneer", "10", 50.000)])
 
 #satalies_selected = np.array([a.name for a in satalites])
 Humans_selected = np.array([a.name for a in Humans if a.age >= 27.1])
-
 
 def PreRunner():
     """PreRunner function"""
@@ -74,7 +73,7 @@ def Persons(Person_Name, Person_Name1):
 
 def _premain_():
     """Main function"""
-    t.sleep(0.074511)
+    t.sleep(0.0074511)
     a = PreRunner() 
     b = Persons(random.choice(["Andrew","Alexandre", "Levy", "Jarad" ]), random.choice(["Brian", "Alan", "Kurt" ,"Amy"]))
     return a, b
