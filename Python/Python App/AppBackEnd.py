@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import Menu, Menubutton
 from backEndButton import *
 from AppReq import *
+import Webserver
 
 class App:
     
@@ -87,6 +88,7 @@ class App:
         Scan = Button(root, text="Scan Open Ports", command=ScanOpenPorts)
         Get_IP = Button(root, text="Get IP", command=get_ip)
         Request = Button(root, text="Request Website", command=CustomRequester.get)
+        OpenServer = Button(root, text="Open Web Server", command=Webserver.main)
         
         # Location of buttons
         #Scan.place(x=0, y=0)
@@ -94,7 +96,7 @@ class App:
         #Request.place(x=0, y=60)
 
         buttons = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 ]
-        another_buttons = [Scan, Get_IP, Request]
+        another_buttons = [Scan, Get_IP, Request, OpenServer]
 
         for xyz in another_buttons:
             xyz.config(bg="black", fg="white")
