@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import os
 
 def create_mask(image):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -17,8 +18,14 @@ def create_mask(image):
     mask_red = cv2.inRange(hsv, lower_red, upper_red)
     mask_gray = cv2.inRange(hsv, lower_gray, upper_gray)
     mask_blue = cv2.inRange(hsv, lower_blue, upper_blue)
-    created_mask = mask + mask_red + mask_gray + mask_blue
-    
+    red = mask_red
+    gray = mask_gray
+    blue = mask_blue
+    r_mask = cv2.bitwise_or(mask, red)
+    g_mask = cv2.bitwise_or(mask, gray)
+    b_mask = cv2.bitwise_or(mask, blue)
+    create_mask = cv2.bitwise_or(r_mask, g_mask)
+    created_mask = cv2.bitwise_or(create_mask, b_mask)
     return created_mask
 
 def Random_Background(image):
@@ -34,8 +41,8 @@ def Random_Background(image):
     return image
 
 
-def run():
-    SelectedIMG = cv2.imread('../../pictures/16.png')
+def run(selected_image):
+    SelectedIMG = cv2.imread(selected_image)
     # resize the images to auto-scale
     SelectedIMG = cv2.resize(SelectedIMG, (0, 0), fx=0.5, fy=0.5)
 
@@ -51,4 +58,11 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    # get directory of the image
+    working_directory = os.getcwd()
+    # get the image
+    selected_image = '../../pictures/'
+    for i in os.listdir(selected_image):
+        print(i)
+        run(selected_image + i)
+    run(selected_image)
