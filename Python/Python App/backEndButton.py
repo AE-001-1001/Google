@@ -46,15 +46,22 @@ class BackEndButtons:
             # get data from the tasklist of given pid
             if inject == True:
                 kernal32 = windll.kernel32
-                pid = int(id)
-                h_process = kernal32.OpenProcess(0x1F0FFF, False, pid)
-                for h in h_process:
-                    print(h)
-                print(h_process, pid)
-                if not h_process:
-                    print("[*] Couldn't acquire a handle to PID: %s" % pid)
-                    print("[*] Are you sure you have permission to inject into this process?")
-                    print("[*] Exiting.")
-                    sys.exit(0)
+                print("Injecting...")
+                # get the handle of the process
+                hProcess = kernal32.OpenProcess(0x1F0FFF, False, int(id))
+                # check if the handle is valid
+                if hProcess is not None:
+                    # get the address of the loadlibraryA function
+                    lpLoadLibraryA = kernal32.GetProcAddress(kernal32.GetModuleHandleA("kernel32.dll"), "LoadLibraryA")
+                    # allocate memory for the dll name
+                    lpBuffer = kernal32.VirtualAllocEx(hProcess, 0, len("C:\\Users\\Public\\Documents\\App.exe"), 0x3000, 0x40)
+                    # write the dll name to the allocated memory
+                    kernal32.WriteProcessMemory(hProcess, lpBuffer, "C:\\Users\\Public\\Documents\\App.exe", len("C:\\Users\\Public\\Documents\\App.exe"), byref(c_ulong(0)))
+                    # create a thread that will run the dll
+                    kernal32.CreateRemoteThread(hProcess, None, 0, lpLoadLibraryA, lpBuffer, 0, byref(c_ulong(0)))
+                    # type in the console of the process
+                    kernal32.WriteProcessMemory(hProcess, 0x7FFD0000, "Hello World", len("Hello World"), byref(c_ulong(0)))
+                    print("Injected")
+                    return 0
                 
             return 1

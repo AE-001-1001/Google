@@ -8,14 +8,17 @@ serverPort = 8080
 class MyServerCums(BaseHTTPRequestHandler):
     
     def _set_response(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'text/html')
-        self.end_headers()
+        try:
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+        except Exception as e:
+            print(e)
 
     def do_GET(self):
-        logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
+        logging.info(f"GET request,\nPath: {str(self.path)}\nHeaders:\n{str(self.headers)}\n")
         self._set_response()
-        #self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
+        self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
         try:
             # Send the html message
             f = open(self.path[1:])

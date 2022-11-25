@@ -4,7 +4,7 @@ from tkinter import *
 from tkinter import Menu, Menubutton
 from backEndButton import *
 from AppReq import *
-import Webserver
+import Webserver 
 
 class App:
     
@@ -73,6 +73,29 @@ class App:
                 f.writelines(a)
             return 0
 
+        def get_mac():
+            import socket
+            import uuid
+            hostname = socket.gethostname()
+            IPAddr = socket.gethostbyname(hostname)
+            mac = uuid.getnode()
+            mac = ':'.join(("%012X" % mac)[i:i+2] for i in range(0, 12, 2))
+            print("Hostname: {}".format(hostname))
+            print("IP Address: {}".format(IPAddr))
+            print("MAC Address: {}".format(mac))
+            return 0
+
+        def get_network_info():
+            """Get the network info"""
+            # get the network info
+            network_info = os.popen("ipconfig").read()
+            # print the network info
+            print(network_info)
+            # get all the mac addresses for the network adapters
+            mac_addresses = os.popen("arp -a").read()
+            print(mac_addresses)
+            return 0
+
         
         btn1 = Button(root, text="PROCESSOR", command=BackEndButtons.PROCESSOR_IDENTIFIER)
         btn2 = Button(root, text="IP Address", command=lambda: (os.system("curl ipinfo.io/ip")))
@@ -89,21 +112,23 @@ class App:
         Get_IP = Button(root, text="Get IP", command=get_ip)
         Request = Button(root, text="Request Website", command=CustomRequester.get)
         OpenServer = Button(root, text="Open Web Server", command=Webserver.main)
-        
+        Get_MAC = Button(root, text="Get MAC Address", command=get_mac)
+        Get_Network_Info = Button(root, text="Get Network Info", command=get_network_info)
         # Location of buttons
         #Scan.place(x=0, y=0)
         #Get_IP.place(x=0, y=30)
         #Request.place(x=0, y=60)
 
         buttons = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 ]
-        another_buttons = [Scan, Get_IP, Request, OpenServer]
+        another_buttons = [Scan, Get_IP, Request, OpenServer, Get_MAC, Get_Network_Info]
 
 
         for xyz in another_buttons:
             xyz.config(bg="black", fg="white")
         for ZYX in range(len(another_buttons)):
             another_buttons[ZYX].place(x=0, y=(ZYX * 30))
-            print("Button {} placed".format(ZYX))
+            # print the button has been placed along with the name of the button
+            print("Placed {}".format(another_buttons[ZYX]))
 
         for i in range(len(buttons)):
             # align the buttons to the left to match the size of the window
