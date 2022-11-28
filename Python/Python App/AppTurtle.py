@@ -1,4 +1,4 @@
-from asyncio import sleep, wait
+
 import turtle as t
 import numpy as np
 import random as r

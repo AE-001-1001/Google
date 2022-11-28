@@ -14,20 +14,19 @@ class CustomRequester:
         url = simpledialog.askstring("Website", "Enter Website")
         r = [requests.get(url).headers]
         print(r)
+        # print the accept header
         with open("Return.txt", "w") as f:
-            # write to file nicely
-            f.writelines(str(r))
-        # print the website
+            f.writelines(r)
         return 0
-    def post(self, data):
-        r = requests.post(self.url, data=json.dumps(data))
-        return r.json()
-
-    def put(self, data):
-        r = requests.put(self.url, data=json.dumps(data))
-        return r.json()
-
-    def delete(self, data):
-        r = requests.delete(self.url, data=json.dumps(data))
-        return r.json()
-
+    def Post():
+        """Website Poster"""
+        # ask what website to post to
+        url = simpledialog.askstring("Website", "Enter Website")
+        # ask what to post
+        data = simpledialog.askstring("Data", "Enter Data")
+        # post to website
+        r = requests.post(url, data)
+        # print the website
+        print(r)
+        return 0
+    

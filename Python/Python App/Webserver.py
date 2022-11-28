@@ -66,7 +66,7 @@ def run(server_class=HTTPServer, handler_class=MyServerCums, port=8080):
 
 
 def main():
-    run(port=serverPort)
+    run(port=serverPort, handler_class=MyServerCums)
 
 if __name__ == "__main__":
     main()

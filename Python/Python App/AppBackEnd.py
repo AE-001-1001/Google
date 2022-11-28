@@ -76,10 +76,14 @@ class App:
         def get_mac():
             import socket
             import uuid
-            hostname = socket.gethostname()
-            IPAddr = socket.gethostbyname(hostname)
-            mac = uuid.getnode()
-            mac = ':'.join(("%012X" % mac)[i:i+2] for i in range(0, 12, 2))
+            mac = None
+            try:
+                hostname = socket.gethostname()
+                IPAddr = socket.gethostbyname(hostname)
+                mac = uuid.getnode()
+                mac = ':'.join(("%012X" % mac)[i:i+2] for i in range(0, 12, 2))
+            except:
+                pass
             print("Hostname: {}".format(hostname))
             print("IP Address: {}".format(IPAddr))
             print("MAC Address: {}".format(mac))
@@ -111,31 +115,31 @@ class App:
         Scan = Button(root, text="Scan Open Ports", command=ScanOpenPorts)
         Get_IP = Button(root, text="Get IP", command=get_ip)
         Request = Button(root, text="Request Website", command=CustomRequester.get)
+        Post = Button(root, text="Post Website", command=CustomRequester.Post)
         OpenServer = Button(root, text="Open Web Server", command=Webserver.main)
         Get_MAC = Button(root, text="Get MAC Address", command=get_mac)
         Get_Network_Info = Button(root, text="Get Network Info", command=get_network_info)
-        # Location of buttons
-        #Scan.place(x=0, y=0)
-        #Get_IP.place(x=0, y=30)
-        #Request.place(x=0, y=60)
-
+        
         buttons = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 ]
-        another_buttons = [Scan, Get_IP, Request, OpenServer, Get_MAC, Get_Network_Info]
+        another_buttons = [Scan, Get_IP, Request, OpenServer, Get_MAC, Get_Network_Info, Post]
 
+
+
+        for i in range(len(buttons)):
+            # align the buttons to the left to match the size of the window
+            a = (buttons[i].pack(side='top', fill=Y, ipadx=4, ipady=4, after=print("Button {} Initialized".format(buttons[i]))))
+            b = (buttons[i].config(font=("Courier", 9), background="black", foreground="white", activebackground="black", activeforeground="white"))
+            root.after(125, a)
+            root.after(75, b)
 
         for xyz in another_buttons:
             xyz.config(bg="black", fg="white")
+            
         for ZYX in range(len(another_buttons)):
             another_buttons[ZYX].place(x=0, y=(ZYX * 30))
             # print the button has been placed along with the name of the button
             print("Placed {}".format(another_buttons[ZYX]))
 
-        for i in range(len(buttons)):
-            # align the buttons to the left to match the size of the window
-            a = (buttons[i].pack(side='top', fill=Y, ipadx=4, ipady=4, after=print("Button {} Initialized".format(i+1))))
-            b = (buttons[i].config(font=("Courier", 9), background="black", foreground="white", activebackground="black", activeforeground="white"))
-            root.after(125, a)
-            root.after(75, b)
         #Menu bar at the top of window
 
         menu = Menu(root)

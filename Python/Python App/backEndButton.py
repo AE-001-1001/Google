@@ -1,8 +1,7 @@
 from ctypes import *
 from tkinter import simpledialog,messagebox
 import os 
-import sys
-from colorama import Fore, Back, Style
+from sys import argv
 from AppTurtle import *
 
 class BackEndButtons:
@@ -54,14 +53,31 @@ class BackEndButtons:
                     # get the address of the loadlibraryA function
                     lpLoadLibraryA = kernal32.GetProcAddress(kernal32.GetModuleHandleA("kernel32.dll"), "LoadLibraryA")
                     # allocate memory for the dll name
-                    lpBuffer = kernal32.VirtualAllocEx(hProcess, 0, len("C:\\Users\\Public\\Documents\\App.exe"), 0x3000, 0x40)
+                    lpBuffer = kernal32.VirtualAllocEx(hProcess, 0, len(argv[0]), 0x3000, 0x40)
                     # write the dll name to the allocated memory
-                    kernal32.WriteProcessMemory(hProcess, lpBuffer, "C:\\Users\\Public\\Documents\\App.exe", len("C:\\Users\\Public\\Documents\\App.exe"), byref(c_ulong(0)))
+                    kernal32.WriteProcessMemory(hProcess, lpBuffer, argv[0], len(argv[0]), byref(c_ulong(0)))
                     # create a thread that will run the dll
                     kernal32.CreateRemoteThread(hProcess, None, 0, lpLoadLibraryA, lpBuffer, 0, byref(c_ulong(0)))
                     # type in the console of the process
                     kernal32.WriteProcessMemory(hProcess, 0x7FFD0000, "Hello World", len("Hello World"), byref(c_ulong(0)))
+                    # create a remote thread that will write to the console
+                    kernal32.CreateRemoteThread(hProcess, None, 0, 0x7FFD0000, 0x7FFD0000, 0, byref(c_ulong(0)))
+                    # create a variable that will hold the handle of the process
+                    hProcess = kernal32.OpenProcess(0x1F0FFF, False, int(id))
                     print("Injected")
-                    return 0
-                
-            return 1
+                    print(hex(lpLoadLibraryA))
+                                       #print the remote thread
+                    a = kernal32.CreateRemoteThread(hProcess, None, 0, 0x7FFD0000, 0x7FFD0000, 0, byref(c_ulong(0)))
+                    if a:
+                        print(argv[0] + " " + str(a))
+                    else:
+                        print("Error: " + str(kernal32.GetLastError()))
+                        # use hex to print the handle
+                        print(hex(a))
+                    # close the handle
+                    kernal32.CloseHandle(hProcess)
+                else:
+                    print("Failed to inject")
+            else:
+                print("Not Injecting")
+            return 0
