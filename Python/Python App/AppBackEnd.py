@@ -1,10 +1,15 @@
+# imports
 import os
+
+import sqlite3
+
 from time import strftime
 from tkinter import *
 from tkinter import Menu, Menubutton
 from backEndButton import *
 from AppReq import *
 import Webserver 
+import win32dll
 
 class App:
     
@@ -58,6 +63,20 @@ class App:
             ip = os.popen("curl -4 {}".format(website)).read()
             print(ip)
             return 0
+        # create a function that uses sqlite3 to create a database
+        def create_database():
+            """Create a database"""
+            # create a database
+            conn = sqlite3.connect('test.db')
+            # create a cursor
+            c = conn.cursor()
+            # put names in the table
+            c.execute("INSERT INTO stocks VALUES ('2006-01-05')")
+            # commit the changes
+            conn.commit()
+            # close the connection
+            conn.close()
+            return conn
 
         def syn_ack():
             """Send a syn_ack packet"""
@@ -119,9 +138,11 @@ class App:
         OpenServer = Button(root, text="Open Web Server", command=Webserver.main)
         Get_MAC = Button(root, text="Get MAC Address", command=get_mac)
         Get_Network_Info = Button(root, text="Get Network Info", command=get_network_info)
-        
+        Kernal32 = Button(root,text="Kernal32", command=lambda: win32dll.main())
+        Create_Database = Button(root, text="Create Database", command=create_database)
+
         buttons = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 ]
-        another_buttons = [Scan, Get_IP, Request, OpenServer, Get_MAC, Get_Network_Info, Post]
+        another_buttons = [Scan, Get_IP, Request, OpenServer, Get_MAC, Get_Network_Info, Post, Kernal32, Create_Database]
 
 
 

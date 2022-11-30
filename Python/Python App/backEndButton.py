@@ -65,7 +65,6 @@ class BackEndButtons:
                     # create a variable that will hold the handle of the process
                     hProcess = kernal32.OpenProcess(0x1F0FFF, False, int(id))
                     print("Injected")
-                    print(hex(lpLoadLibraryA))
                                        #print the remote thread
                     a = kernal32.CreateRemoteThread(hProcess, None, 0, 0x7FFD0000, 0x7FFD0000, 0, byref(c_ulong(0)))
                     if a:

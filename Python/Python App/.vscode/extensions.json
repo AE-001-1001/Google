@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "visualstudioexptteam.vscodeintellicode",
-        "ms-python.python"
+        "ms-python.python",
+        "ms-vscode.cpptools"
     ]
 }
