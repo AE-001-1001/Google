@@ -1,14 +1,18 @@
 from ctypes import *
 from tkinter import simpledialog,messagebox
 import os 
+import platform
 from sys import argv
+import sys
 from AppTurtle import *
-
+import time
 class BackEndButtons:
         def PROCESSOR_IDENTIFIER():
             """Prints a message when the button is clicked"""
-            print("{}".format(os.getenv("PROCESSOR_IDENTIFIER")))
-
+            data_to_return = ["PROCESSOR_IDENTIFIER", "PROCESSOR_ARCHITECTURE", "PROCESSOR_LEVEL", "PROCESSOR_REVISION", "NUMBER_OF_PROCESSORS"]
+            for i in data_to_return:
+                print(i + ": " + os.environ[i])
+            return 0
         # create a function that will use ip to get location of ip
         def ip_location():
             """Get the location of an ip address"""
@@ -50,6 +54,7 @@ class BackEndButtons:
                 hProcess = kernal32.OpenProcess(0x1F0FFF, False, int(id))
                 # check if the handle is valid
                 if hProcess is not None:
+                    
                     # get the address of the loadlibraryA function
                     lpLoadLibraryA = kernal32.GetProcAddress(kernal32.GetModuleHandleA("kernel32.dll"), "LoadLibraryA")
                     # allocate memory for the dll name
@@ -68,11 +73,19 @@ class BackEndButtons:
                                        #print the remote thread
                     a = kernal32.CreateRemoteThread(hProcess, None, 0, 0x7FFD0000, 0x7FFD0000, 0, byref(c_ulong(0)))
                     if a:
+                        kernel32 = kernal32
                         print(argv[0] + " " + str(a))
+
+                        time.sleep(5)
+                        kernel32.CloseHandle(hProcess)
+                        # print out the data from handle
+                        print("Handle: " + str(hProcess))
+                        print("Closed Handle after 5 seconds")
+                        return None
                     else:
                         print("Error: " + str(kernal32.GetLastError()))
                         # use hex to print the handle
-                        print(hex(a))
+                        #print(sys.stderr, hex(kernal32.GetLastError))
                     # close the handle
                     kernal32.CloseHandle(hProcess)
                 else:

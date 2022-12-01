@@ -5,7 +5,7 @@ import sqlite3
 
 from time import strftime
 from tkinter import *
-from tkinter import Menu, Menubutton
+from tkinter import Menu, Menubutton,simpledialog,messagebox
 from backEndButton import *
 from AppReq import *
 import Webserver 
@@ -55,6 +55,7 @@ class App:
             # update the total virtual memory every 1000 milliseconds
             root.after(1000, update_total_virtual_memory)
             return 0
+
         #create a function that will get ip of given website
         def get_ip():
             """gets the ip of a website"""
@@ -63,20 +64,51 @@ class App:
             ip = os.popen("curl -4 {}".format(website)).read()
             print(ip)
             return 0
+
         # create a function that uses sqlite3 to create a database
-        def create_database():
-            """Create a database"""
+        def Commit_Database():
+            """Read a database"""
             # create a database
-            conn = sqlite3.connect('test.db')
+            name = simpledialog.askstring("Input", "Enter a name for the database", parent=root)
             # create a cursor
-            c = conn.cursor()
-            # put names in the table
-            c.execute("INSERT INTO stocks VALUES ('2006-01-05')")
+            cursor = sqlite3.Connection(name)
+            c = cursor.cursor()
+            # create a table in stocks with the columns symbol and price
+            # print out the contents of the table
+            # insert into the table
+            c.execute("CREATE TABLE Persons(PersonID int,LastName varchar(255),FirstName varchar(255),Address varchar(255),City varchar(255))")
             # commit the changes
-            conn.commit()
-            # close the connection
-            conn.close()
-            return conn
+            cursor.commit()
+            print(c.fetchall())
+            return 0
+        
+        def Read_Database():
+            """Read the database"""
+            # get the database
+            name = simpledialog.askstring("Input", "Enter the name of the database", parent=root)
+            # create a cursor
+            cursor = sqlite3.Connection(name)
+            c = cursor.cursor()
+            # print out all the contents of the table
+            c.execute("SELECT * FROM stocks")
+            # from the table stocks, select all the contents
+            print(c.fetchall())
+            return 0
+
+        def Delete_Database():
+            """Delete the database"""
+            # delete the database
+            name = simpledialog.askstring("Input", "Enter the name of the database", parent=root)
+            name_of_table = simpledialog.askstring("Input", "Enter the name of the table", parent=root)
+            # create a cursor
+            cursor = sqlite3.Connection(name)
+            c = cursor.cursor()
+            # delete the table
+            c.execute("DELETE FROM {}".format(name_of_table))
+            # commit the changes
+            cursor.commit()
+            print("Deleted the table! %s" % name_of_table)
+            return 0
 
         def syn_ack():
             """Send a syn_ack packet"""
@@ -119,7 +151,7 @@ class App:
             print(mac_addresses)
             return 0
 
-        
+        # the buttons on the window
         btn1 = Button(root, text="PROCESSOR", command=BackEndButtons.PROCESSOR_IDENTIFIER)
         btn2 = Button(root, text="IP Address", command=lambda: (os.system("curl ipinfo.io/ip")))
         btn3 = Button(root, text="IP Location", command=BackEndButtons.ip_location)
@@ -139,27 +171,29 @@ class App:
         Get_MAC = Button(root, text="Get MAC Address", command=get_mac)
         Get_Network_Info = Button(root, text="Get Network Info", command=get_network_info)
         Kernal32 = Button(root,text="Kernal32", command=lambda: win32dll.main())
-        Create_Database = Button(root, text="Create Database", command=create_database)
-
+        Commit_Database = Button(root, text="Commit Database", command=Commit_Database)
+        Read_Database = Button(root, text="Read Database", command=Read_Database)
+        Delete_Database = Button(root, text="Delete Database", command=Delete_Database)
         buttons = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 ]
-        another_buttons = [Scan, Get_IP, Request, OpenServer, Get_MAC, Get_Network_Info, Post, Kernal32, Create_Database]
+        another_buttons = [Scan, Get_IP, Request, OpenServer, Get_MAC, Get_Network_Info, Post, Kernal32, Commit_Database,Read_Database, Delete_Database]
 
 
 
         for i in range(len(buttons)):
             # align the buttons to the left to match the size of the window
-            a = (buttons[i].pack(side='top', fill=Y, ipadx=4, ipady=4, after=print("Button {} Initialized".format(buttons[i]))))
+            buttons[i].place(x=120, y=30*i)
             b = (buttons[i].config(font=("Courier", 9), background="black", foreground="white", activebackground="black", activeforeground="white"))
-            root.after(125, a)
+            print("Placed: {}".format(buttons[i]))
             root.after(75, b)
-
+        for zyx in buttons:
+            zyx.config(font=("Courier", 9), background="black", foreground="white", activebackground="black", activeforeground="white")
         for xyz in another_buttons:
-            xyz.config(bg="black", fg="white")
+            xyz.config(font=("Courier", 9), background="black", foreground="white", activebackground="black", activeforeground="white")
             
         for ZYX in range(len(another_buttons)):
             another_buttons[ZYX].place(x=0, y=(ZYX * 30))
             # print the button has been placed along with the name of the button
-            print("Placed {}".format(another_buttons[ZYX]))
+            print("Placed: {}".format(another_buttons[ZYX]))
 
         #Menu bar at the top of window
 
@@ -173,8 +207,20 @@ class App:
         menu.add_checkbutton(label='Virtual Memory Usage', command=update_total_virtual_memory)
         menu.add_checkbutton(label='Deploy IP Addresses Reader', command=lambda: os.system("netstat | findstr /R /C:\"[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*\""))
         menu.add_checkbutton(label='Turtle Drawing', command=Turtle.rhombicosidodecahedron)
-
-        menu.config(font=("Courier", 9), background="black", foreground="white", relief="raised", border=3)
-        root.config(menu=menu, background="black", bd=5, relief="sunken", border=3)
-        
+        menu.configure(background="black", foreground="black", activebackground="black", activeforeground="black")
+        cursors = ["arrow", "circle", "clock", 
+                   "cross", "dotbox", "exchange",
+                   "fleur", "heart","boat",
+                   "iron_cross"," left_ptr"," left_side",
+                   " left_tee"," leftbutton"," ll_angle",
+                   " lr_angle","hand2","hand1", "pencil",
+                   "pirate","plus","question_arrow"," right_ptr",
+                   " right_side"," right_tee"," rightbutton",
+                   " sb_down_arrow"," sb_h_double_arrow"," sb_left_arrow",
+                   " sb_right_arrow"," sb_up_arrow"," sb_v_double_arrow",
+                   "shuttle","sizing","spider","spraycan","star",
+                   "target","tcross","top_left_arrow","top_left_corner",
+                   "top_right_corner","top_side","top_tee","trek",
+                   "ul_angle","umbrella","ur_angle","watch","xterm"]
+        root.config(menu=menu, background="black", bd=5, relief="sunken", border=3, highlightbackground="lightblue", highlightcolor="blue", highlightthickness=3, cursor=cursors[19])        
         root.mainloop()
