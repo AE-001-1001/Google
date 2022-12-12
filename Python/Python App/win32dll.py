@@ -10,6 +10,7 @@ import time
 import msvcrt 
 import random as r
 import subprocess
+from backEndButton import *
 kernal32 = windll.kernel32
 user32 = windll.user32
 hStdOut = kernal32.GetStdHandle(-11)
@@ -166,29 +167,72 @@ def set_console_cursor_pos(x, y):
     kernal32.SetConsoleCursorPosition(hStdOut, var)
     return set_console_cursor_pos(var.X, var.Y)
 
+# create a function that will find the ip location of given field
+def find_ip_location(x):
+    """find_ip_location function"""
+    # create a handle to the console
+    kernal32.SetConsoleTextAttribute(hStdOut, 0x000A)
+    # if ip is found print it
+    
+    # create a handle to the console
+    kernal32.SetConsoleTextAttribute(hStdOut, 0x0007)
+    # create a handle to the console
+    ip = re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', x)
+    if ip == []:
+        kernal32.SetConsoleTextAttribute(hStdOut, 0x000A)
+    # if ip is found print it
+        print("No IP found")
+    # create a handle to the console
+        kernal32.SetConsoleTextAttribute(hStdOut, 0x0007)
+    
+    if ip is not None:
+        kernal32.SetConsoleTextAttribute(hStdOut, 0x000A)
+    # if ip is found print it
+    # create a list of ip addresses
+        list_if_ip = dict()
+        for i in ip:
+            list_if_ip[i] = i
+        for i in list_if_ip:
+            print("IP found: %s" % i)
+    # create a handle to the console
+        kernal32.SetConsoleTextAttribute(hStdOut, 0x0007)
+    return 0
+
+
+
 # create a function that will use re to find all ip addresses running backdoor
 def find_ip():
     """find_ip function"""
-    a = re.findall(r'[0-9]+(?:\.[0-9]+){3}', str(subprocess.check_output("netstat -ano", shell=True)))
-    for i in a:
-        if i == " ":
-            print("No IP addresses found")
-            continue
-        else:
-            print(i)
-    return a
+    # create a handle to the console
+    kernal32.SetConsoleTextAttribute(hStdOut, 0x000A)
+    print("Finding IP addresses")
+    re.compile(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
+    # create a handle to the console
+    kernal32.SetConsoleTextAttribute(hStdOut, 0x0007)
+    # filter out the duplicate ip addresses
+    
+    a = list(set(re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', str(subprocess.check_output("netstat -ano", shell=True)))))
+    # get the ports for each ip address
+
+    a.sort()
+    # get string and check the location of the ip address
+    for ip_string in a:
+        find_ip_location(ip_string)
+    
+    return None
+        # check the location of the ip address using the custom find_ip_location function
 
 
 
 # create a function that will make a animation in the console of a duck
 def Symbol():
-    dictionary = {1:'\u256D', 2:'\u256E', 3:'\u2570', 4:'\u256F', 5:'\u256B'}
+    dictionary = {1:'\u256D', 2:'\u256E', 3:'\u2570', 4:'\u256F', 5:'\u256B' , 6:'\u256C', 7:'\u2571', 8:'\u2572'}
 
     while True:
         for i in range(1, 6):
             print(dictionary[i], end='\r')
         for i in range(0, 20):
-            print(dictionary[r.randint(1, 5)])
+            print(dictionary[r.randint(1, 6)])
         for x in range(0,10):
             print("*" * x + "-" * (10-i) + "*" * i , end='\r')
         return None
@@ -214,6 +258,7 @@ def dump_console_screen_buffer_to_file(filename):
                 # write it to the file
                 f.write(buffer[y * csbi.dwSize.X + x].Char)
                 msvcrt.heapmin()
+                
     return x, y
 
 def _prerunner_():
@@ -227,7 +272,7 @@ def _prerunner_():
     # make the ! colored blue
     # using kernal32
     kernal32.SetConsoleTextAttribute.argtypes = [c_void_p, c_ushort]
-    print(c_bool(kernal32.SetConsoleTextAttribute(hStdOut, 0x0005))._objects)
+    print(c_bool(kernal32.SetConsoleTextAttribute(hStdOut, 0x0005)))
     kernal32.SetConsoleTextAttribute.restype = c_bool
     kernal32.SetConsoleTextAttribute(hStdOut, 0x0002)
     

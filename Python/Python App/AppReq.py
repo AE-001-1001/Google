@@ -14,9 +14,6 @@ class CustomRequester:
         url = simpledialog.askstring("Website", "Enter Website")
         r = [requests.get(url).headers]
         print(r)
-        # print the accept header
-        with open("Return.txt", "w") as f:
-            f.writelines(r)
         return 0
     def Post():
         """Website Poster"""

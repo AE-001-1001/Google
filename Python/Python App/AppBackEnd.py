@@ -10,7 +10,7 @@ from backEndButton import *
 from AppReq import *
 import Webserver 
 import win32dll
-
+import random as r
 class App:
     
     def new_window(name):
@@ -181,7 +181,7 @@ class App:
 
         for i in range(len(buttons)):
             # align the buttons to the left to match the size of the window
-            buttons[i].place(x=120, y=30*i)
+            buttons[i].place(x=125, y=30*i)
             b = (buttons[i].config(font=("Courier", 9), background="black", foreground="white", activebackground="black", activeforeground="white"))
             print("Placed: {}".format(buttons[i]))
             root.after(75, b)
@@ -198,16 +198,6 @@ class App:
         #Menu bar at the top of window
 
         menu = Menu(root)
-        
-        menu.add_checkbutton(label='Time', command=update_time_in_titletk)
-        menu.add_checkbutton(label='Date', command=lambda: print(strftime("%d/%m/%Y/%H:%M:%S/%a")))
-        menu.add_checkbutton(label="GPU Information", command=lambda: os.system("nvidia-smi "))
-        menu.add_checkbutton(label='CPU Usage', command=lambda: os.system("wmic cpu get loadpercentage /value"))
-        menu.add_checkbutton(label='Memory Usage', command=update_total_memory)
-        menu.add_checkbutton(label='Virtual Memory Usage', command=update_total_virtual_memory)
-        menu.add_checkbutton(label='Deploy IP Addresses Reader', command=lambda: os.system("netstat | findstr /R /C:\"[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*\""))
-        menu.add_checkbutton(label='Turtle Drawing', command=Turtle.rhombicosidodecahedron)
-        menu.configure(background="black", foreground="black", activebackground="black", activeforeground="black")
         cursors = ["arrow", "circle", "clock", 
                    "cross", "dotbox", "exchange",
                    "fleur", "heart","boat",
@@ -222,5 +212,16 @@ class App:
                    "target","tcross","top_left_arrow","top_left_corner",
                    "top_right_corner","top_side","top_tee","trek",
                    "ul_angle","umbrella","ur_angle","watch","xterm"]
-        root.config(menu=menu, background="black", bd=5, relief="sunken", border=3, highlightbackground="lightblue", highlightcolor="blue", highlightthickness=3, cursor=cursors[19])        
+        menu.add_checkbutton(label='Time', command=update_time_in_titletk)
+        menu.add_checkbutton(label='Date', command=lambda: print(strftime("%d/%m/%Y/%H:%M:%S/%a")))
+        menu.add_checkbutton(label="GPU Information", command=lambda: os.system("nvidia-smi "))
+        menu.add_checkbutton(label='CPU Usage', command=lambda: os.system("wmic cpu get loadpercentage /value"))
+        menu.add_checkbutton(label='Memory Usage', command=update_total_memory)
+        menu.add_checkbutton(label='Virtual Memory Usage', command=update_total_virtual_memory)
+        menu.add_checkbutton(label='Deploy IP Addresses Reader', command=lambda: os.system("netstat | findstr /R /C:\"[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*\""))
+        # change the cursor
+        menu.add_checkbutton(label='Change Cursor', command=lambda: root.config(cursor=r.choices(cursors)))
+        menu.configure(background="black", foreground="black", activebackground="black", activeforeground="black")
+
+        root.config(menu=menu, background="black", bd=5, relief="sunken", border=3, highlightbackground="darkblue", highlightcolor="blue", highlightthickness=3, cursor=cursors[19])        
         root.mainloop()
