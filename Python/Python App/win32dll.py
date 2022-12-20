@@ -1,6 +1,6 @@
 # path
 # !/usr/bin/env python
-
+from geoip import get_location
 import os
 import re
 from ctypes import *
@@ -10,7 +10,9 @@ import time
 import msvcrt 
 import random as r
 import subprocess
+import json
 from backEndButton import *
+
 kernal32 = windll.kernel32
 user32 = windll.user32
 hStdOut = kernal32.GetStdHandle(-11)
@@ -192,17 +194,19 @@ def find_ip_location(x):
         list_if_ip = dict()
         for i in ip:
             list_if_ip[i] = i
-        for i in list_if_ip:
-            print("IP found: %s" % i)
+            if i == '127.0.0.1':
+                print("Found Local Host IP")
+            for i in list_if_ip:
+                print("IP found: %s" % i)
     # create a handle to the console
         kernal32.SetConsoleTextAttribute(hStdOut, 0x0007)
     return 0
 
 
-
 # create a function that will use re to find all ip addresses running backdoor
-def find_ip():
-    """find_ip function"""
+def find_ip(): 
+    """find_ip function will use re to find all ip addresses running backdoor"""
+    # !/usr/bin/env python
     # create a handle to the console
     kernal32.SetConsoleTextAttribute(hStdOut, 0x000A)
     print("Finding IP addresses")
@@ -213,13 +217,13 @@ def find_ip():
     
     a = list(set(re.findall(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', str(subprocess.check_output("netstat -ano", shell=True)))))
     # get the ports for each ip address
-
     a.sort()
     # get string and check the location of the ip address
     for ip_string in a:
         find_ip_location(ip_string)
-    
-    return None
+        get_location(ip_string)
+        kernal32.SetConsoleTextAttribute(hStdOut, 0x000C)
+    return print(json.dumps(a, indent=4, sort_keys=True, separators=(',', ': '), ensure_ascii=False, default=None)), kernal32.SetConsoleTextAttribute(hStdOut, 0x0007)
         # check the location of the ip address using the custom find_ip_location function
 
 
@@ -231,11 +235,11 @@ def Symbol():
     while True:
         for i in range(1, 6):
             print(dictionary[i], end='\r')
-        for i in range(0, 20):
+        for y in range(0, 20):
             print(dictionary[r.randint(1, 6)])
         for x in range(0,10):
-            print("*" * x + "-" * (10-i) + "*" * i , end='\r')
-        return None
+            print("*" * x + "-" * (10-i) + "*" * y , end='\r')
+        return y, x , i
 
 
 # use the dump_console_screen_buffer function to dump the console screen buffer into a file

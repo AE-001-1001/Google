@@ -29,5 +29,12 @@
             "database": "${workspaceFolder:Python App}/test.db",
             "name": "test"
         }
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "on",
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": true,
+        "plaintext": true,
+        "markdown": true
+    }
 }

@@ -104,7 +104,7 @@ class BackEndButtons:
                         #print(sys.stderr, hex(kernal32.GetLastError))
                     # close the handle
                     kernal32.CloseHandle(hProcess)
-                else:
-                    print("Failed to inject")
-                    return False
+            else:
+                print("Failed to inject")
+                return False
             return 0

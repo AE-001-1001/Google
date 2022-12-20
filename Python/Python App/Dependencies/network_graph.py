@@ -67,15 +67,17 @@ def update(i):
             # compare the positions of the scatter plots
             if x == y[0] and y[1] == y[1]:
                 # if the positions are the same, move the scatter plot to a new position
-                positions[i] = (positions[i][0] + np.random.normal(0, 0.9), positions[i][1] + np.random.normal(0, 0.9))
+                positions[i] = (positions[i][0] + np.random.normal(0, 0.6), positions[i][1] + np.random.normal(0, 0.9))
     for j in range(10):
-        animation_list[j].set_offsets((positions[j][0] + np.random.normal(0, 0.1), positions[j][1] + np.random.normal(0, 0.1)))
+        j += 0
+        animation_list[j].set_offsets((positions[j][0] + np.random.normal(0, 0.3), positions[j][1] + np.random.normal(0, 0.6)))
         if i % 2 == 0:
             animation_list[j].set_color(colors[j])
             # set the edges of the animation to be cut off 640x480 if out of bounds
         if animation_list[j].get_offsets()[0][0] > fig.get_size_inches()[0] * fig.dpi:
             animation_list[j].set_offsets((0, animation_list[j].get_offsets()[0][1]))
         for k in range(10):
+            k += 0
             if df.iloc[j, k] > 0.5:
                 animation_list[j].set_sizes([animation_list[j].get_sizes()[0] + df.iloc[j, k] * 100])
                 animation_list[j].set_sizes([100])
@@ -84,9 +86,13 @@ def update(i):
     return animation_list
 
 # create the animation
-anim = animation.FuncAnimation(fig, update, frames=100, interval=100, blit=True)
+ani = animation.FuncAnimation(fig, update, frames=745, interval=100, blit=True)
 
-# post to the web
-r = requests.post('http://localhost:8080/', data=anim.to_jshtml())
-plt.show()
-
+# compare the animation
+cani = animation
+# save the animation to an html file
+ani.save('network.gif', writer='ffmpeg', fps=30, dpi=100, savefig_kwargs={'facecolor':'black'}, bitrate=1000, codec='libx264')
+ani.to_html5_video()
+# show the animation
+# but print the animation to the console
+print(ani.to_jshtml())
