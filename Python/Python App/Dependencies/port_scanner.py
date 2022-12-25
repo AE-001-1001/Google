@@ -1,14 +1,26 @@
-import socket
+import numpy, re, os, matplotlib.pyplot as plt,cmath
 
-def scan(host, port):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    try:
-        s.connect((host, port))
-        print("Port open: " + str(port))
-        s.close()
-    except:
-        print("Port closed: " + str(port))
+class Numpy_array:
+    def __init__(self, array):
+        for i in range(len(array)):
+            if re.search(r"([a-z0-9]{5}-){4}[A-Z0-9]{5}", str(array[i])):
+                array[i] = re.search(r"([A-Z0-9]{5}-){4}[A-Z0-9]{5}", str(array[i])).group(0)
+            self.array = array
+    # create a function that will make the array iterable
+    def __iter__(self):
+        return iter(self.array)
 
-host = "34.104.35.123"
-for port in [443, 80, 63933]:
-    scan(host, port)
+# create a list of data
+a = Numpy_array([" " + str(numpy.random.randint(0, 255)) + "." + str(numpy.random.randint(0, 255)) + "." + str(numpy.random.randint(0, 255)) + "." + str(numpy.random.randint(0, 255)) + " " for i in numpy.arange(0, 2004)])
+# print the amount of ips loaded
+
+os.system("cls" if os.name == "nt" else "clear")
+# use cmath to loop through the array
+
+for i in range(0,5):
+    for ip in a:
+        # plot the number of ips loaded
+        plt.plot(i, len(a.array), "ro")
+        print(ip)
+print(len(a.array))
+plt.show()

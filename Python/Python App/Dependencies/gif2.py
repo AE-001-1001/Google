@@ -21,24 +21,38 @@ fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
 # creates the surface plot
-surf = ax.plot_surface(X, Y, f(X, Y), rstride=1, cstride=1, cmap=plt.cm.cool, linewidth=2, antialiased=True)
-# loop through the cmap to get the colors
+surf = ax.plot_surface(X, Y, f(X, Y), rstride=1, cstride=1, cmap=plt.cm.RdYlGn, linewidth=2, antialiased=True)
+# increase loading time
+fig.canvas.draw()
 
-# creates the animation
+
 def update(i):
     ax.view_init(elev=10., azim=i)
     # print the progress in color (green)
     win32.SetConsoleTextAttribute(win32.GetStdHandle(-11), 10)
     # with frame number
-    print("Rendering Frame: " + str(i) + " Progress: " + str(round(i/360*100, 2)) + "%", end="\r")
+    for frame in range(0, i):
+        i += 1
+        print("Rendering Frame: " + str(frame) + " Progress: " + str(round(frame/360*100, 2)) + "%", end="\r")
     win32.SetConsoleTextAttribute(win32.GetStdHandle(-11), 7)
     for updatedFrame in surf._facecolors:
         surf._facecolors[i] = surf._facecolors[i][0] + updatedFrame
+        # make sure the surf color is not too bright
+        for color in surf._facecolors[i]:
+            # check if the color is too bright using floats
+            if color > np.random.uniform(0.8, 1):
+                # make it a little darker
+                color = color - np.random.uniform(0.1, 0.2)
+            # check if the color is too bright using ints
+            elif color > np.random.randint(200, 255):
+                # make it a little darker
+                color = color - np.random.randint(50, 100)
+            
     # print the Frame Number it is Rendering
     return fig, 
 
 # creates the animation
-ani = animation.FuncAnimation(fig, update, frames=360, interval=20, blit=True, repeat=True , repeat_delay=1000)
+ani = animation.FuncAnimation(fig, update, frames=360, interval=20, blit=True, repeat=True , repeat_delay=1000, save_count=360, cache_frame_data=False, init_func=None)
 
 # saves the animation
-ani.save('3Dplot.gif', writer='imagemagick', fps=15)
+ani.save('3Dplot.gif', writer='Pillow', fps=15)
