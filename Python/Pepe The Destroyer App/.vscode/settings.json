@@ -1,0 +1,41 @@
+{
+    "cSpell.words": [
+        "activebackground",
+        "activeforeground",
+        "findstr",
+        "HTTPAPI",
+        "ipadx",
+        "ipady",
+        "ipinfo",
+        "kernal",
+        "loadpercentage",
+        "ookla",
+        "rhombicosidodecahedron",
+        "scapy",
+        "speedtest",
+        "tasklist",
+        "titletk",
+        "Webserver"
+    ],
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:Python App}/test.db",
+            "name": "test"
+        }
+    ],
+    "python.analysis.typeCheckingMode": "on",
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": true,
+        "plaintext": true,
+        "markdown": true
+    }
+}
