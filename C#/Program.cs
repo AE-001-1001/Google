@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using System.Net;
+using System.Security.Principal;
+
 namespace Environment 
 {
     // create a class that will be the web server
@@ -46,10 +48,29 @@ namespace Environment
                     // change the user-agent to a mac based user-agent
                     request.Headers["User-Agent"] = mbuser_agent;
                 }
-                // create a string that will be used to get the request and make the background of the web server black but the text rainbow animated but smoothed out nicely and the text is centered with the name of the OS that the user is using and animate the user-agent to be a mac based user-agent
-                string responseString = "<html><head><style>body {background-color: black;}</style><script>var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];var colorIndex = 0;function changeColor() {document.body.style.color = colors[colorIndex];colorIndex = (colorIndex + 1) % colors.length;}setInterval(changeColor, 1000);</script></head><body><center><h1>" + RuntimeInformation.OSDescription + "</h1><h1>" + request.Headers["User-Agent"] + "</h1></center></body></html>";
-
-                
+                // if it is windows get the users elevation
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    // get the users elevation
+                    WindowsIdentity identity = WindowsIdentity.GetCurrent();
+                    WindowsPrincipal principal = new WindowsPrincipal(identity);
+                    // check if the user is an admin
+                    if (principal.IsInRole(WindowsBuiltInRole.Administrator))
+                    {
+                        // print out the users elevation
+                        Console.WriteLine("The user is an administrator.");
+        
+                    }
+                    else
+                    {
+                        // print out the users elevation
+                        Console.WriteLine("The user is not an administrator.");
+                    }
+                }
+                WindowsIdentity identityy = WindowsIdentity.GetCurrent();
+                WindowsPrincipal principa1l = new WindowsPrincipal(identityy);
+                // create a string that will be used to post the request of the OS version of the user and if the user is ADmin or not and the users Internet Service Provider ip, make the text centered and make the background black and the text animated rainbow
+                string responseString = "<html><head><style>body {background-color: black; color: white; text-align: center; animation: rainbow 5s infinite;}</style><script>function rainbow() {var letters = '0123456789ABCDEF';var color = '#';for (var i = 0; i < 6; i++) {color += letters[Math.floor(Math.random() * 16)];}document.body.style.color = color;}setInterval(rainbow, 100);</script></head><body><h1>OS: " + RuntimeInformation.OSDescription + "</h1><h1>Admin: " + principa1l.IsInRole(WindowsBuiltInRole.Administrator) + "</h1><h1>ISP: " + new WebClient().DownloadString("http://icanhazip.com") + "</h1></body></html>";
                 // create a string that will be used to post the request to make the web server look like a website
                 byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
                 // set the content length
@@ -64,8 +85,6 @@ namespace Environment
                     {
                         Console.WriteLine("Language: " + request.UserLanguages[i]);
                     }
-                    // print out the users port
-                    Console.WriteLine("Address: " + request.UserHostAddress);
                     // print out the users host
                     Console.WriteLine("Host: " + request.UserHostName);
                     // print out the users agent
@@ -265,6 +284,7 @@ namespace MyWorld
             // try giving the text emotions and colors to express those emotions
             Console.ForegroundColor = ConsoleColor.White;
             // run the webserver
+            Console.WriteLine("Running Webserver @ http://localhost:8080/");
             Environment.Webserver.Start();
         }
     }
