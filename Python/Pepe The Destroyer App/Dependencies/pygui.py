@@ -53,13 +53,22 @@ class PyGui:
     def release_key_combo(self, key1, key2):
         pyautogui.hotkey(key1, key2)
 
-class Window(object):
-    def __init__(data):
-        data = pygui
-        pass 
-    def __str__(data):
-        return "Window"
-# create a instance of the class
+# create a class that will print out the container
+class Window:
+    def __init__(self, title, width, height,background):
+        self.title = title
+        self.width = width
+        self.height = height
+        self.background = background
+    # function to show the window
+    def show(self):
+        window = tk.Tk()
+        window.title(self.title)
+        window.configure(background=self.background)
+        window.geometry("%sx%s" % (self.width, self.height))
+        window.mainloop()
+
+
 pygui = PyGui()
 
 print("PyGui is ready to use")
@@ -67,13 +76,18 @@ print("PyGui is ready to use")
 # set up the window
 window = ct.windll.user32.ShowWindow(ct.windll.kernel32.GetConsoleWindow(), ct.WinDLL("user32.dll").GetSystemMetrics(0))
 # get the details of the window
-for i in range(0, 5):
-    i += 1
-    rewritten = window + i
-    print(rewritten)
+Init_window = window
+# print the details of the window
+for _g in range(0, 5):
+    _g += 1
+    rewritten_winvar = window + _g
+    print("Rewritten :  %s " % _g)
     pass
 if window is not None:
     print("Window is not None!")
+    Window('Test', "500", "500", "black").show()
+    # print the size of the window 
+    print("Window size: %s" % window.size)
 else:
     if window is None:
         print("None in window!")

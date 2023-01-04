@@ -12,6 +12,8 @@ import random as r
 import subprocess
 import json
 from backEndButton import *
+from scapy.all import *
+import random
 
 kernal32 = windll.kernel32
 user32 = windll.user32
@@ -208,7 +210,7 @@ def find_ip():
     """find_ip function will use re to find all ip addresses running backdoor"""
     # !/usr/bin/env python
     # create a handle to the console
-    kernal32.SetConsoleTextAttribute(hStdOut, 0x000A)
+    _handle = kernal32.GetStdHandle(-11)
     print("Finding IP addresses")
     re.compile(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
     # create a handle to the console
@@ -222,7 +224,8 @@ def find_ip():
     for ip_string in a:
         find_ip_location(ip_string)
         get_location(ip_string)
-        kernal32.SetConsoleTextAttribute(hStdOut, 0x000C)
+        kernal32.SetConsoleTextAttribute(hStdOut, 0x000D)
+        print("Console Handle : %s" % hex(_handle & 0xffffffff))
     return print(json.dumps(a, indent=4, sort_keys=True, separators=(',', ': '), ensure_ascii=False, default=None)), kernal32.SetConsoleTextAttribute(hStdOut, 0x0007)
         # check the location of the ip address using the custom find_ip_location function
 
@@ -233,10 +236,10 @@ def Symbol():
     dictionary = {1:'\u256D', 2:'\u256E', 3:'\u2570', 4:'\u256F', 5:'\u256B' , 6:'\u256C', 7:'\u2571', 8:'\u2572'}
 
     while True:
-        for i in range(1, 6):
+        for i in range(1, 8):
             print(dictionary[i], end='\r')
         for y in range(0, 20):
-            print(dictionary[r.randint(1, 6)])
+            print(dictionary[r.randint(1, 8)])
         for x in range(0,10):
             print("*" * x + "-" * (10-i) + "*" * y , end='\r')
         return y, x , i
@@ -261,14 +264,13 @@ def dump_console_screen_buffer_to_file(filename):
             for x in range(csbi.dwSize.X):
                 # write it to the file
                 f.write(buffer[y * csbi.dwSize.X + x].Char)
-                msvcrt.heapmin()
-                
+                # create a byte string of length 1
+                msvcrt.putch( buffer[y * csbi.dwSize.X + x].Char.encode('utf-8'))
+                print(buffer[y * csbi.dwSize.X + x].Char, end='')
     return x, y
 
 def _prerunner_():
     """_prerunner_ function"""
-        # use the dump_console_screen_buffer_to_file function to dump the console screen buffer into a file
-    dump_console_screen_buffer_to_file('console.txt')
     # use the dump console screen buffer function
     os.system("cls")
     csbi = dump_console_screen_buffer()
